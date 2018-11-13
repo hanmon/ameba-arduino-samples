@@ -18,7 +18,7 @@
 #include <ArduinoJson.h>
 //Using DHT library
 #include "DHT.h"
-#define DHTPIN 2   //Using Pin2 for interfacing DHT sensor
+#define DHTPIN 8   //Using Pin2 for interfacing DHT sensor
 #define DHTTYPE DHT11   // Using DHT 11 sensor
 
 // Update these with values suitable for your network.
@@ -84,7 +84,9 @@ void rawTask() {
     printOnLCD("PM2.5:"+String(pm25)+String(" ug/m3"),1);
     //
     //String mqttMessage = getJsonPayload(String(humid), String(temp)); // for two values
-    String mqttMessage = getJsonPayload(String(humid), String(temp),String(pm25)); //for three values
+    //String mqttMessage = getJsonPayload(String(humid), String(temp),String(pm25)); //for three values
+    String mqttMessage = getJsonPayload(String(temp), String(pm25)); //for three values
+    Serial.println("mqttMessage:"+mqttMessage);
     mqttMessage.toCharArray(publishRawPayload, mqttMessage.length() + 1);
     //client.publish(publishRawTopic, publishRawPayload);
     int result = client.publish(publishRawTopic, publishRawPayload);

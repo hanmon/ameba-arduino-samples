@@ -1,11 +1,11 @@
-String getJsonPayload(String humid, String temp) {
+String getJsonPayload(String temp, String pm25) {
   StaticJsonBuffer<200> doc1;
   StaticJsonBuffer<200> doc2; //allocated for JSON document
   JsonObject& root1 = doc1.createObject();
   JsonObject& root2 = doc2.createObject();
-  root1["id"] = "humidity";
+  root1["id"] = "pm25";
   JsonArray& value1 = root1.createNestedArray("value");
-  value1.add(humid);
+  value1.add(pm25);
   root2["id"] = "temperature";
   JsonArray& value2 = root2.createNestedArray("value");
   value2.add(temp);
