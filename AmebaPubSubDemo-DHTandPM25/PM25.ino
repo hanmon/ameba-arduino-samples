@@ -20,7 +20,6 @@
  */
 
 #include <SoftwareSerial.h>
-#define BOARD_RTL8195A
 #if defined(BOARD_RTL8195A)
 SoftwareSerial mySerial(0, 1); // RX, TX
 #elif defined(BOARD_RTL8710)
@@ -36,12 +35,11 @@ int pm10 = 0;
 int pm25 = 0;
 int pm100 = 0;
 
-void setup() {
-  Serial.begin(57600);
+void initUART2(){
   mySerial.begin(9600); // PMS 3003 UART has baud rate 9600
 }
 
-void loop() { // run over and over
+int getPM25() { // run over and over
   uint8_t c = 0;
   idx = 0;
   memset(buf, 0, pmsDataLen); //clear buf
@@ -73,4 +71,5 @@ void loop() { // run over and over
   Serial.print("pm2.5: ");
   Serial.print(pm25);
   Serial.println(" ug/m3");
+  return pm25;
 }

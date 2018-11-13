@@ -16,6 +16,11 @@
 #include <WiFi.h>
 #include <PubSubClient.h>
 #include <ArduinoJson.h>
+//Using DHT library
+#include "DHT.h"
+#define DHTPIN 2   //Using Pin2 for interfacing DHT sensor
+#define DHTTYPE DHT11   // Using DHT 11 sensor
+
 // Update these with values suitable for your network.
 
 char ssid[] = "iot2018";     // your network SSID (name)
@@ -39,6 +44,8 @@ const int ledPin=13;
 //instantiate PubSubCluent object
 WiFiClient wifiClient;
 PubSubClient client(wifiClient);
+//instantiate DHT object
+DHT dht(DHTPIN, DHTTYPE);
 
 void callback(char* topic, byte* payload, unsigned int length) {
   //Parsing JSON Object and print to serial monitor
@@ -60,7 +67,20 @@ void callback(char* topic, byte* payload, unsigned int length) {
 void rawTask() {
   if ((millis() - previousRawTime) > rawTimer) {
     previousRawTime = millis();
-    String mqttMessage=getJsonPayload(String(random(60,70)),String(random(20,25)));
+    float humid=dht.readHumidity();
+    float temp=dht.readTemperature();
+    //String mqttMessage=getJsonPayload(String(random(60,70)),String(random(20,25)));
+    Serial.println("humid:"+String(humid)+",temp:"+String(temp));
+    if(isnan(humid)||isnan(temp)){
+      Serial.println("Reading DHT sensor failed!");
+      return;
+    }
+    //Show humid and temp on LCD
+    clearLCD();
+    printOnLCD("Humid:"+String(humid)+"%",0);
+    printOnLCD("Temp:"+String(temp)+String((char)0xDF)+"C",1);
+    //
+    String mqttMessage=getJsonPayload(String(humid),String(temp));
     mqttMessage.toCharArray(publishRawPayload, mqttMessage.length() + 1);
     //client.publish(publishRawTopic, publishRawPayload);
     int result = client.publish(publishRawTopic, publishRawPayload);
@@ -111,6 +131,10 @@ void setup()
   delay(1500);
   // initialize digital pin 13 as an output.
   pinMode(ledPin, OUTPUT);
+  //To activate DHT sensor
+  dht.begin();
+  //init LCD display
+  initLCD();
 }
 
 void loop()
