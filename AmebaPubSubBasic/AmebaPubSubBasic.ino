@@ -30,7 +30,7 @@ char publishRawTopic[]   = "/v1/device/10802236687/rawdata";
 char publishRawPayload[] = "[{\"id\":\"temperature\",\"value\":[\"25\"]},"
                         "{\"id\":\"humidity\",\"value\":[\"60\"]}]";
 
-char subscribeTopic[] = "/v1/device/10802236687/sensor/led/rawdata";
+char subscribeTopic[] = "/v1/device/10802236687/sensor/rgb/rawdata";
 unsigned long previousRawTime = 0;     //storing previous publishing time
 int rawTimer = 10000;         //raw data timer, unit:msec
 //define ledPin
@@ -54,7 +54,9 @@ void callback(char* topic, byte* payload, unsigned int length) {
   const char* time=root["time"];
   const char* value=root["value"][0];
   Serial.println("Parsed JSON Object id:"+String(id)+",time:"+String(time)+",value:"+String(value));
-  digitalWrite(ledPin,(*value=='1'?HIGH:LOW));  //Switch led on or off according to value
+  //digitalWrite(ledPin,(*value=='1'?HIGH:LOW));  //Switch led on or off according to value
+  unsigned long color=String(value).toInt();
+  
 }
 
 void rawTask() {

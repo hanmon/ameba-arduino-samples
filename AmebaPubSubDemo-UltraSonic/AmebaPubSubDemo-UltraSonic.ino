@@ -18,19 +18,19 @@
 #define ledPin 13
 
 // Update these variables with values suitable for your network.
-char ssid[] = "boo";     // your Wi-Fi SSID (name)
-char pass[] = "@a123456";  // your Wi-Fi Encryption Key
+char ssid[] = "iott2018";     // your Wi-Fi SSID (name)
+char pass[] = "iot@chtti";  // your Wi-Fi Encryption Key
 int status  = WL_IDLE_STATUS;    // the Wifi radio's status
 int heartBeatTimer = 5000;      //heatbeat timer, unit:msec
 int rawTimer = 10000;         //raw data timer, unit:msec
 char mqttServer[]     = "iot.cht.com.tw";
 const char* mqttClientId   = "amebaClient";
-const char* DEVICE_KEY     = "DK2RWEZT75170U2UYZ";   //your api key
-char publishHBTopic[]   = "/v1/device/7802015565/heartbeat"; //device id here should be then same in your project
+const char* DEVICE_KEY     = "DK2RZT3CWXFXX0AUX1";   //your api key
+char publishHBTopic[]   = "/v1/device/10802236687/heartbeat"; //device id here should be then same in your project
 char publishHBPayload[] = "{\"pulse\":\"10000\"}";
-char publishRawTopic[]   = "/v1/device/7802015565/rawdata"; //device id here should be then same in your project
+char publishRawTopic[]   = "/v1/device/10802236687/rawdata"; //device id here should be then same in your project
 char publishRawPayload[200];
-char subscribeLedTopic[] = "/v1/device/7802015565/sensor/led/rawdata";  //sensor id here should be then same in your project
+char subscribeLedTopic[] = "/v1/device/10802236687/sensor/led/rawdata";  //sensor id here should be then same in your project
 long previousHBTime = 0;          // previous HB previous time
 long previousRawTime = 0;         // previous Raw previous time
 int ledState = 0;                // led value(1:high,0:off)
