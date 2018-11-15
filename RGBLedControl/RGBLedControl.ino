@@ -19,8 +19,8 @@ const int redPin = 9;
 const int greenPin = 10;
 const int bluePin = 11;
 //enum colors {RED = 9, GREEN, BLUE, OFF};
-unsigned long colorMap[] = {0xF44336, 0xFF9800, 0xFFEB3B, 0x4CAF50, 0x29B6F6, 0x303F9F, 0x9C27B0};
-char* colorName[] = {"RED", "ORANGE", "YELLOW", "GREEN", "BLUE", "INDIGO", "PURPLE"};
+unsigned long colorMap[] = {0xFF0000, 0xFF9800, 0xFFEB3B, 0x00FF00, 0xFF, 0x303F9F, 0x9C27B0};
+char* colorName[]={"RED","ORANGE","YELLOW","GREEN","BLUE","INDIGO","PURPLE"};
 
 
 void setup() {
@@ -40,17 +40,12 @@ void setup() {
 
 void loop() {
   showSevenColors();
-  //  setColor(0xFF,0,0); //R
-  //  delay(2000);
-  //  setColor(0,0xFF,0); //G
-  //  delay(2000);
-  //  setColor(0,0,0xFF); //B
-  //  delay(2000);
+ 
 }
 
 void showSevenColors() {
   int red, green, blue;
-  for (int i = 0; i < sizeof(colorMap) / sizeof(unsigned long); i++) {
+  for(int i=0;i<sizeof(colorMap)/sizeof(unsigned long);i++){
     red = (colorMap[i] & 0xFF0000) >> 16;
     green = (colorMap[i] & 0xFF00) >> 8;
     blue = colorMap[i] & 0xFF;
@@ -103,3 +98,4 @@ void setColor(int red, int green, int blue) {
 //      break;
 //  }
 //}
+
