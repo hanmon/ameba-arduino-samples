@@ -18,8 +18,8 @@
 #include <ArduinoJson.h>
 // Update these with values suitable for your network.
 
-char ssid[] = "boo";     // your network SSID (name)
-char pass[] = "@a123456";  // your network password
+char ssid[] = "wukong2.4";     // your network SSID (name)
+char pass[] = "WuKong!!";  // your network password
 int status  = WL_IDLE_STATUS;    // the Wifi radio's status
 
 char mqttServer[]     = "iot.cht.com.tw";
@@ -52,10 +52,12 @@ void callback(char* topic, byte* payload, unsigned int length) {
   }
   const char* id=root["id"];
   const char* time=root["time"];
-  const char* value=root["value"][0];
-  Serial.println("Parsed JSON Object id:"+String(id)+",time:"+String(time)+",value:"+String(value));
+  //const char* value=root["value"][0];
+  unsigned long rgbColor=root["value"][0];
+  Serial.println("Parsed JSON Object id:"+String(id)+",time:"+String(time)+",value:"+String(rgbColor));
   //digitalWrite(ledPin,(*value=='1'?HIGH:LOW));  //Switch led on or off according to value
-  unsigned long rgbColor=String(value).toInt();
+  //unsigned long rgbColor=String(value).toInt();
+  
   setColor(rgbColor);
   Serial.print("RGB Color Value:");
   Serial.println(rgbColor,HEX);
