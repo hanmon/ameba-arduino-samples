@@ -13,28 +13,32 @@
 
 */
 #define ARDUINOJSON_ENABLE_PROGMEM 0   //Defining for ameba arduino specially 
+#define DEBUG    //Uncomment this when printing degugging message is necessary
 #include <WiFi.h>
 #include <PubSubClient.h>
 #include <ArduinoJson.h>
 // Update these with values suitable for your network.
 
-char ssid[] = "wukong2.4";     // your network SSID (name)
-char pass[] = "WuKong!!";  // your network password
+char ssid[] = "chtti";     // your network SSID (name)
+char pass[] = "12345678";  // your network password
 int status  = WL_IDLE_STATUS;    // the Wifi radio's status
+
 
 char mqttServer[]     = "iot.cht.com.tw";
 char deviceId[]       = "10802236687";
 char clientId[]       = "amebaClient";
 const char DEVICE_KEY[] = "DK2RZT3CWXFXX0AUX1";   //your api key
 char publishRawTopic[]   = "/v1/device/10802236687/rawdata";
-char publishRawPayload[] = "[{\"id\":\"temperature\",\"value\":[\"25\"]},"
-                        "{\"id\":\"humidity\",\"value\":[\"60\"]}]";
-
+char publishRawPayload[300] ;
+char logStr[200]; //for printing log string
 char subscribeTopic[] = "/v1/device/10802236687/sensor/rgb/rawdata";
 unsigned long previousRawTime = 0;     //storing previous publishing time
 int rawTimer = 10000;         //raw data timer, unit:msec
 //define ledPin
 const int ledPin=13;
+//define color value
+unsigned long rgbColorValue;
+
 
 //instantiate PubSubCluent object
 WiFiClient wifiClient;
@@ -42,7 +46,9 @@ PubSubClient client(wifiClient);
 
 void callback(char* topic, byte* payload, unsigned int length) {
   //Parsing JSON Object and print to serial monitor
-  Serial.println("Message arrived ["+String(topic)+"]");
+
+  Serial.println(F("Message arrived:"));
+  Serial.println((char*)payload);
   StaticJsonBuffer<200> jsonBuffer;
   JsonObject& root=jsonBuffer.parseObject((char*)payload);
   // Test if parsing succeeds.
@@ -52,43 +58,62 @@ void callback(char* topic, byte* payload, unsigned int length) {
   }
   const char* id=root["id"];
   const char* time=root["time"];
-  //const char* value=root["value"][0];
-  unsigned long rgbColor=root["value"][0];
-  Serial.println("Parsed JSON Object id:"+String(id)+",time:"+String(time)+",value:"+String(rgbColor));
+  unsigned long value=root["value"][0];
+  //Serial.println("Parsed JSON Object id:"+String(id)+",time:"+String(time)+",value:"+String(value));
+  sprintf(logStr,"Parsed JSON Object id:%s, time:%s, value:%d",id,time,value);
+  Serial.println(logStr);
+  rgbColorValue=value;
+  setColor(rgbColorValue);
   //digitalWrite(ledPin,(*value=='1'?HIGH:LOW));  //Switch led on or off according to value
-  //unsigned long rgbColor=String(value).toInt();
+  //unsigned long color=String(value).toInt();
   
-  setColor(rgbColor);
-  Serial.print("RGB Color Value:");
-  Serial.println(rgbColor,HEX);
 }
 
 void rawTask() {
   if ((millis() - previousRawTime) > rawTimer) {
     previousRawTime = millis();
-    String mqttMessage=getJsonPayload(String(random(60,70)),String(random(20,25)));
-    mqttMessage.toCharArray(publishRawPayload, mqttMessage.length() + 1);
-    //client.publish(publishRawTopic, publishRawPayload);
+    //float humid=getHumidityValue();
+    //float temp=getTemperatureValue();
+    //int pm25=getPM25();
+    //char* mqttMessage=generateMQTTMessage(humid,temp,pm25);
+    //char* mqttMessage=generateMQTTMessage(humid,temp);
+    char* mqttMessage=generateMQTTMessage(random(60,70),random(20,25),random(0,1000),random(0,1000),random(0,1000));
+    strcpy(publishRawPayload,mqttMessage);
+    free(mqttMessage);
+    //Show humid and temp on LCD
+    clearLCD();
+    char* lcdStrRow0=(char*)malloc(20);
+    //char* lcdStrRow1=(char*)malloc(20);
+    sprintf(lcdStrRow0,"RGB Value:%X",rgbColorValue);
+    //sprintf(lcdStrRow0,"Humid:%2.2f%%",humid);
+    //sprintf(lcdStrRow1,"PM2.5:%d ug/m3",pm25);
+    //sprintf(lcdStrRow0,"Temp:%2.2f%cC",temp,0xDF);
+    printOnLCD(lcdStrRow0,0);
+    //printOnLCD(lcdStrRow1,1);
+    free(lcdStrRow0);
+    //free(lcdStrRow1);
+    Serial.print(F("publishRawPayload:"));
+    Serial.println(publishRawPayload);
     int result = client.publish(publishRawTopic, publishRawPayload);
-    result == 1 ? Serial.println("MQTT publish succeeded") : Serial.println("MQTT publish failed");
+    result == 1 ? Serial.println(F("MQTT publish succeeded")) : Serial.println(F("MQTT publish failed"));
   }
 }
 
 void reconnect() {
   // Loop until we're reconnected
   while (!client.connected()) {
-    Serial.print("Attempting MQTT connection...");
+    Serial.print(F("Attempting MQTT connection..."));
     // Attempt to connect
     if (client.connect(clientId, DEVICE_KEY, DEVICE_KEY)) {
-      Serial.println("connected");
+      Serial.println(F("connected"));
       // Once connected, publish an announcement...
-      client.publish(publishRawTopic, publishRawPayload);
+      //client.publish(publishRawTopic, publishRawPayload);
       // ... and resubscribe
       client.subscribe(subscribeTopic);
     } else {
-      Serial.print("failed, rc=");
+      Serial.print(F("failed, rc="));
       Serial.print(client.state());
-      Serial.println(" try again in 5 seconds");
+      Serial.println(F(" try again in 5 seconds"));
       // Wait 5 seconds before retrying
       delay(5000);
     }
@@ -101,7 +126,7 @@ void setup()
 
   while (status != WL_CONNECTED) {
     Serial.println("");
-    Serial.print("Attempting to connect to SSID: ");
+    Serial.print(F("Attempting to connect to SSID: "));
     Serial.println(ssid);
     // Connect to WPA/WPA2 network. Change this line if using open or WEP network:
     status = WiFi.begin(ssid, pass);
@@ -117,6 +142,12 @@ void setup()
   delay(1500);
   // initialize digital pin 13 as an output.
   pinMode(ledPin, OUTPUT);
+  //init DHT sensor
+  //initDHTSensor();
+  //init LCD display
+  initLCD();
+  //init PM2.5 Sensor
+  //initUART2();
 }
 
 void loop()

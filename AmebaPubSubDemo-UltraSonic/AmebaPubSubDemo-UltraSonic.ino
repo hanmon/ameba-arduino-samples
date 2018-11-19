@@ -1,50 +1,56 @@
-
 /*
-  CHT IoT Client example
+  Basic MQTT example
 
-  It connects to an CHT IoT server by MQTT:
-  - publishes publishHBPayload to publishHBTopic
-  - publishes publishRawPayload to publishRawTopic
-  - subscribes to subscribeLedTopic to parse data for turn on or turn off LED (You may change definition of ledPin to other pin number you want)
+  This sketch demonstrates the basic capabilities of the library.
+  It connects to an MQTT server then:
+  - publishes "hello world" to the topic "outTopic"
+  - subscribes to the topic "inTopic", printing out any messages
+    it receives. NB - it assumes the received payloads are strings not binary
+
+  It will reconnect to the server if the connection is lost using a blocking
+  reconnect function. See the 'mqtt_reconnect_nonblocking' example for how to
+  achieve the same result without blocking the main loop.
+
 */
-#define ARDUINOJSON_ENABLE_PROGMEM 0
+#define ARDUINOJSON_ENABLE_PROGMEM 0   //Defining for ameba arduino specially 
+#define DEBUG    //Uncomment this when printing degugging message is necessary
 #include <WiFi.h>
 #include <PubSubClient.h>
-//#include <math.h>
 #include <ArduinoJson.h>
+// Update these with values suitable for your network.
 
-
-//define the pin to control led
-#define ledPin 13
-
-// Update these variables with values suitable for your network.
-char ssid[] = "iott2018";     // your Wi-Fi SSID (name)
-char pass[] = "iot@chtti";  // your Wi-Fi Encryption Key
+char ssid[] = "chtti";     // your network SSID (name)
+char pass[] = "12345678";  // your network password
 int status  = WL_IDLE_STATUS;    // the Wifi radio's status
-int heartBeatTimer = 5000;      //heatbeat timer, unit:msec
-int rawTimer = 10000;         //raw data timer, unit:msec
+
+
 char mqttServer[]     = "iot.cht.com.tw";
-const char* mqttClientId   = "amebaClient";
-const char* DEVICE_KEY     = "DK2RZT3CWXFXX0AUX1";   //your api key
-char publishHBTopic[]   = "/v1/device/10802236687/heartbeat"; //device id here should be then same in your project
-char publishHBPayload[] = "{\"pulse\":\"10000\"}";
-char publishRawTopic[]   = "/v1/device/10802236687/rawdata"; //device id here should be then same in your project
-char publishRawPayload[200];
-char subscribeLedTopic[] = "/v1/device/10802236687/sensor/led/rawdata";  //sensor id here should be then same in your project
-long previousHBTime = 0;          // previous HB previous time
-long previousRawTime = 0;         // previous Raw previous time
-int ledState = 0;                // led value(1:high,0:off)
+char deviceId[]       = "10802236687";
+char clientId[]       = "amebaClient";
+const char DEVICE_KEY[] = "DK2RZT3CWXFXX0AUX1";   //your api key
+char publishRawTopic[]   = "/v1/device/10802236687/rawdata";
+char publishRawPayload[300] ;
+char logStr[200]; //for printing log string
+char subscribeTopic[] = "/v1/device/10802236687/sensor/rgb/rawdata";
+unsigned long previousRawTime = 0;     //storing previous publishing time
+int rawTimer = 10000;         //raw data timer, unit:msec
+//define ledPin
+const int ledPin=13;
+//define color value
+unsigned long rgbColorValue;
 
 
+//instantiate PubSubCluent object
 WiFiClient wifiClient;
 PubSubClient client(wifiClient);
 
-//MQTT callback function
 void callback(char* topic, byte* payload, unsigned int length) {
+  //Parsing JSON Object and print to serial monitor
+
+  Serial.println(F("Message arrived:"));
+  Serial.println((char*)payload);
   StaticJsonBuffer<200> jsonBuffer;
-  char* buffer = (char*)malloc(length);
-  memcpy(buffer, payload, length);
-  JsonObject& root = jsonBuffer.parseObject(buffer);
+  JsonObject& root=jsonBuffer.parseObject((char*)payload);
   // Test if parsing succeeds.
   if (!root.success()) {
     Serial.println("parseObject() failed");
@@ -52,124 +58,65 @@ void callback(char* topic, byte* payload, unsigned int length) {
   }
   const char* id=root["id"];
   const char* time=root["time"];
-  const char* value=root["value"][0];
-
-  Serial.println("Parsed JSON Object:");
-  Serial.println(id);
-  Serial.println(time);
-  Serial.println(value);
-
-  digitalWrite(ledPin,(*value=='1'?HIGH:LOW));
-  free(buffer);
+  unsigned long value=root["value"][0];
+  //Serial.println("Parsed JSON Object id:"+String(id)+",time:"+String(time)+",value:"+String(value));
+  sprintf(logStr,"Parsed JSON Object id:%s, time:%s, value:%d",id,time,value);
+  Serial.println(logStr);
+  rgbColorValue=value;
+  setColor(rgbColorValue);
+  //digitalWrite(ledPin,(*value=='1'?HIGH:LOW));  //Switch led on or off according to value
+  //unsigned long color=String(value).toInt();
+  
 }
 
-
-//Send heartbeat msg task
-void hbTask() {
-  if (millis() - previousHBTime > heartBeatTimer) {
-    previousHBTime = millis();
-    client.publish(publishHBTopic, publishHBPayload);
-    Serial.println("Publish HB Topic...");
-  }
-}
-
-//Send raw msg task
-//void rawTask() {
-//  StaticJsonBuffer<200> doc1; //allocated for JSON document
-//  StaticJsonBuffer<200> doc2; //allocated for JSON document
-//  JsonObject& root1 = doc1.createObject();
-//  JsonObject& root2 = doc2.createObject();
-//  String output1, output2;
-//  if (millis() - previousRawTime > rawTimer) {
-//    previousRawTime = millis();
-//    //float tmp = getTemp();
-//    float h = getHumidityValue();
-//    float t = getTemperatureValue();
-//    if (isnan(h) || isnan(t) ) {
-//      Serial.println("Failed to read from DHT sensor!");
-//      return;
-//    }
-//    else {
-//      Serial.print("Humidity:");
-//      Serial.println(String(int(h)));
-//      Serial.print("Temperature:");
-//      Serial.println(String(int(t)));
-//      root1["id"] = "humidity";
-//      JsonArray& value1 = root1.createNestedArray("value");
-//      value1.add(String(h));
-//      root2["id"] = "temperature";
-//      JsonArray& value2 = root2.createNestedArray("value");
-//      value2.add(String(t));
-//      String output1, output2;
-//      root1.printTo(output1);
-//      root2.printTo(output2);
-//      String mqttMessage = "[" + output1 + "," + output2 + "]";
-//      mqttMessage.toCharArray(publishRawPayload, mqttMessage.length() + 1);
-//      Serial.print("publishRawPayload:");
-//      Serial.println(publishRawPayload);
-//      int result = client.publish(publishRawTopic, publishRawPayload);
-//      result == 1 ? Serial.println("MQTT publish succeeded") : Serial.println("MQTT publish failed");
-//      Serial.println("");
-//    }
-//  }
-//}
-
-//Send raw msg task
-void rawTaskSingle() {
-  StaticJsonBuffer<200> doc1; //allocated for JSON document
-  //StaticJsonBuffer<200> doc2; //allocated for JSON document
-  JsonObject& root1 = doc1.createObject();
-  //JsonObject& root2 = doc2.createObject();
-  String output1;
-  if (millis() - previousRawTime > rawTimer) {
+void rawTask() {
+  if ((millis() - previousRawTime) > rawTimer) {
     previousRawTime = millis();
-    //float tmp = getTemp();
-    float d = getDistance();
-    if (isnan(d) ) {
-      Serial.println("Failed to read from Distance sensor!");
-      return;
-    }
-    else {
-//      Serial.print("Distance:");
-//      Serial.println(String(d));
-      root1["id"] = "distance";
-      JsonArray& value1 = root1.createNestedArray("value");
-      value1.add(String(d));
-      String output1;
-      root1.printTo(output1);
-      String mqttMessage = "[" + output1 + "]";
-      mqttMessage.toCharArray(publishRawPayload, mqttMessage.length() + 1);
-      Serial.print("publishRawPayload:");
-      Serial.println(publishRawPayload);
-      int result = client.publish(publishRawTopic, publishRawPayload);
-      result == 1 ? Serial.println("MQTT publish succeeded") : Serial.println("MQTT publish failed");
-      Serial.println("");
-    }
+    //float humid=getHumidityValue();
+    //float temp=getTemperatureValue();
+    //int pm25=getPM25();
+    //float distance=getDistance();
+    float distance=random(0,500);
+    char* mqttMessage=generateMQTTMessage(distance);
+    //char* mqttMessage=generateMQTTMessage(humid,temp,pm25);
+    //char* mqttMessage=generateMQTTMessage(humid,temp);
+    //char* mqttMessage=generateMQTTMessage(random(60,70),random(20,25),random(0,1000),random(0,1000),random(0,1000));
+    strcpy(publishRawPayload,mqttMessage);
+    free(mqttMessage);
+    //Show humid and temp on LCD
+    clearLCD();
+    char* lcdStrRow0=(char*)malloc(20);
+    //char* lcdStrRow1=(char*)malloc(20);
+    sprintf(lcdStrRow0,"Distancd:%3.1fcm",distance);
+    //sprintf(lcdStrRow0,"Humid:%2.2f%%",humid);
+    //sprintf(lcdStrRow1,"PM2.5:%d ug/m3",pm25);
+    //sprintf(lcdStrRow0,"Temp:%2.2f%cC",temp,0xDF);
+    printOnLCD(lcdStrRow0,0);
+    //printOnLCD(lcdStrRow1,1);
+    free(lcdStrRow0);
+    //free(lcdStrRow1);
+    Serial.print(F("publishRawPayload:"));
+    Serial.println(publishRawPayload);
+    int result = client.publish(publishRawTopic, publishRawPayload);
+    result == 1 ? Serial.println(F("MQTT publish succeeded")) : Serial.println(F("MQTT publish failed"));
   }
 }
 
 void reconnect() {
   // Loop until we're reconnected
   while (!client.connected()) {
-    Serial.println("");
-    Serial.println("Attempting MQTT connection...");
+    Serial.print(F("Attempting MQTT connection..."));
     // Attempt to connect
-    if (client.connect(mqttClientId, DEVICE_KEY, DEVICE_KEY)) {
-      Serial.println("connected");
-      // ... and resubscribe
-      client.subscribe(subscribeLedTopic);
-      Serial.print("Subscribe LED topic is:");
-      Serial.println(subscribeLedTopic);
-
+    if (client.connect(clientId, DEVICE_KEY, DEVICE_KEY)) {
+      Serial.println(F("connected"));
       // Once connected, publish an announcement...
-      client.publish(publishHBTopic, publishHBPayload);
-      Serial.print("Public HB payload is:");
-      Serial.println(publishHBPayload);
-
+      //client.publish(publishRawTopic, publishRawPayload);
+      // ... and resubscribe
+      client.subscribe(subscribeTopic);
     } else {
-      Serial.print("failed, rc=");
+      Serial.print(F("failed, rc="));
       Serial.print(client.state());
-      Serial.println(" try again in 5 seconds");
+      Serial.println(F(" try again in 5 seconds"));
       // Wait 5 seconds before retrying
       delay(5000);
     }
@@ -178,12 +125,11 @@ void reconnect() {
 
 void setup()
 {
-  Serial.begin(9600);
-  //initializing DHT Sensor
-  initUltraSonicSensor();
+  Serial.begin(38400);
 
   while (status != WL_CONNECTED) {
-    Serial.print("Attempting to connect to SSID: ");
+    Serial.println("");
+    Serial.print(F("Attempting to connect to SSID: "));
     Serial.println(ssid);
     // Connect to WPA/WPA2 network. Change this line if using open or WEP network:
     status = WiFi.begin(ssid, pass);
@@ -197,10 +143,16 @@ void setup()
 
   // Allow the hardware to sort itself out
   delay(1500);
-  Serial.print("ARDUINOJSON_VERSION_MAJOR = ");
-  Serial.println(ARDUINOJSON_VERSION_MAJOR);
   // initialize digital pin 13 as an output.
   pinMode(ledPin, OUTPUT);
+  //init DHT sensor
+  //initDHTSensor();
+  //init LCD display
+  initLCD();
+  //init Ultrasonic sensor
+  initUltraSonicSensor();
+  //init PM2.5 Sensor
+  //initUART2();
 }
 
 void loop()
@@ -209,8 +161,5 @@ void loop()
     reconnect();
   }
   client.loop();
-
-  //run timer task
-  //hbTask();
-  rawTaskSingle();
+  rawTask();
 }

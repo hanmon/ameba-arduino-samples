@@ -1,3 +1,20 @@
+//Generating a complete single value MQTT Message for uploading to CHT IoT Platform
+char* generateMQTTMessage(float distance){
+  char *ptr1,*ptr2,*message;
+  ptr1=generateJSONObject("distance",distance);
+  message=(char*)malloc(strlen(ptr1)+10);
+  strcpy(message, "[");
+  strcat(message, ptr1);
+  strcat(message, "]");
+  #ifdef DEBUG
+  Serial.print("message");   //for debugging
+  Serial.println(message);   //for debugging
+  Serial.print("message length:");//for debugging
+  Serial.println(strlen(message));//for debugging
+  #endif
+  free(ptr1);
+  return message;
+}
 //Generating a complete two value MQTT Message for uploading to CHT IoT Platform
 char* generateMQTTMessage(float humid, float temp){
   char *ptr1,*ptr2,*message;
