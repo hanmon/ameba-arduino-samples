@@ -29,15 +29,14 @@ char deviceId[]       = "10802236687";
 char clientId[]       = "amebaClient";
 const char DEVICE_KEY[] = "DK2RZT3CWXFXX0AUX1";   //your api key
 char publishRawTopic[]   = "/v1/device/10802236687/rawdata";
-char publishRawPayload[300] ;
+char publishRawPayload[400] ;
+char displayRow0[30],displayRow1[30],displayRow2[30];
 char logStr[200]; //for printing log string
 char subscribeTopic[] = "/v1/device/10802236687/sensor/rgb/rawdata";
 unsigned long previousRawTime = 0;     //storing previous publishing time
 int rawTimer = 10000;         //raw data timer, unit:msec
 //define ledPin
 const int ledPin=13;
-//define color value
-unsigned long rgbColorValue;
 
 
 //instantiate PubSubCluent object
@@ -62,8 +61,6 @@ void callback(char* topic, byte* payload, unsigned int length) {
   //Serial.println("Parsed JSON Object id:"+String(id)+",time:"+String(time)+",value:"+String(value));
   sprintf(logStr,"Parsed JSON Object id:%s, time:%s, value:%d",id,time,value);
   Serial.println(logStr);
-  rgbColorValue=value;
-  setColor(rgbColorValue);
   //digitalWrite(ledPin,(*value=='1'?HIGH:LOW));  //Switch led on or off according to value
   //unsigned long color=String(value).toInt();
   
@@ -72,26 +69,37 @@ void callback(char* topic, byte* payload, unsigned int length) {
 void rawTask() {
   if ((millis() - previousRawTime) > rawTimer) {
     previousRawTime = millis();
-    //float humid=getHumidityValue();
-    //float temp=getTemperatureValue();
-    //int pm25=getPM25();
+    //Measuring from real sensors
+    float humid=random(60,70);
+    float temp=random(20,25);
+    int pm10=random(0,1000);
+    int pm25=random(0,1000);
+    int pm100=random(0,1000);
+    humid=getHumidityValue();
+    temp=getTemperatureValue();
+    int* pmValues=getPMValues();
+    pm10=pmValues[0];
+    pm25=pmValues[1];
+    pm100=pmValues[2];
+    //Generating random values for testing
     //char* mqttMessage=generateMQTTMessage(humid,temp,pm25);
     //char* mqttMessage=generateMQTTMessage(humid,temp);
-    char* mqttMessage=generateMQTTMessage(random(60,70),random(20,25),random(0,1000),random(0,1000),random(0,1000));
+    //generating testing value for publishing
+    char* mqttMessage=generateMQTTMessage(humid,temp,pm10,pm25,pm100);
     strcpy(publishRawPayload,mqttMessage);
     free(mqttMessage);
     //Show humid and temp on LCD
-    clearLCD();
-    char* lcdStrRow0=(char*)malloc(20);
-    //char* lcdStrRow1=(char*)malloc(20);
-    sprintf(lcdStrRow0,"RGB Value:%X",rgbColorValue);
-    //sprintf(lcdStrRow0,"Humid:%2.2f%%",humid);
-    //sprintf(lcdStrRow1,"PM2.5:%d ug/m3",pm25);
-    //sprintf(lcdStrRow0,"Temp:%2.2f%cC",temp,0xDF);
-    printOnLCD(lcdStrRow0,0);
-    //printOnLCD(lcdStrRow1,1);
-    free(lcdStrRow0);
-    //free(lcdStrRow1);
+    //clearLCD();
+//    char* lcdStrRow0=(char*)malloc(20);
+//    char* lcdStrRow1=(char*)malloc(20);
+    clearOLED();
+    serCursorToBegin();
+    sprintf(displayRow0,"PM2.5:%d ug/m3",pm25);
+    sprintf(displayRow1,"Temp:%2.2f%cC",temp,0xF7);
+    sprintf(displayRow2,"Humid:%2.2f%%",humid);
+    printOnOLED(displayRow0);
+    printOnOLED(displayRow1);
+    printOnOLED(displayRow2);
     Serial.print(F("publishRawPayload:"));
     Serial.println(publishRawPayload);
     int result = client.publish(publishRawTopic, publishRawPayload);
@@ -143,11 +151,12 @@ void setup()
   // initialize digital pin 13 as an output.
   pinMode(ledPin, OUTPUT);
   //init DHT sensor
-  //initDHTSensor();
+  initDHTSensor();
   //init LCD display
-  initLCD();
+  //initLCD();
+  initOLED();
   //init PM2.5 Sensor
-  //initUART2();
+  initUART2();
 }
 
 void loop()

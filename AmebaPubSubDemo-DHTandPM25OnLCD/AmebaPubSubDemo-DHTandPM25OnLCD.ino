@@ -19,8 +19,8 @@
 #include <ArduinoJson.h>
 // Update these with values suitable for your network.
 
-char ssid[] = "chtti";     // your network SSID (name)
-char pass[] = "12345678";  // your network password
+char ssid[] = "";     // your network SSID (name)
+char pass[] = "";  // your network password
 int status  = WL_IDLE_STATUS;    // the Wifi radio's status
 
 

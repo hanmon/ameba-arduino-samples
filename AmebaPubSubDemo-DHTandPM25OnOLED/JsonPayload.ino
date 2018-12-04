@@ -1,18 +1,13 @@
-//Generating a complete three value MQTT Message for uploading to CHT IoT Platform
+//Generating a complete two value MQTT Message for uploading to CHT IoT Platform
 char* generateMQTTMessage(float humid, float temp){
   char *ptr1,*ptr2,*message;
   ptr1=generateJSONObject("humidity",humid);
   ptr2=generateJSONObject("temperature",temp);
- // ptr3=generateJSONObject("pm25",pm25);
   message=(char*)malloc(strlen(ptr1)+strlen(ptr2)+10);
-  Serial.print("Memory allocated for MQTTMessage:");
-  Serial.println(strlen(ptr1)+strlen(ptr2)+10);
   strcpy(message, "[");
   strcat(message, ptr1);
   strcat(message, ",");
   strcat(message, ptr2);
-//  strcat(message, ",");
-//  strcat(message, ptr3); 
   strcat(message, "]");
   #ifdef DEBUG
   Serial.print("message");   //for debugging
@@ -22,17 +17,15 @@ char* generateMQTTMessage(float humid, float temp){
   #endif
   free(ptr1);
   free(ptr2);
-  //free(ptr3);
   return message;
 }
+//Generating a complete three value MQTT Message for uploading to CHT IoT Platform
 char* generateMQTTMessage(float humid, float temp, int pm25){
   char *ptr1,*ptr2,*ptr3,*message;
   ptr1=generateJSONObject("humidity",humid);
   ptr2=generateJSONObject("temperature",temp);
   ptr3=generateJSONObject("pm25",pm25);
   message=(char*)malloc(strlen(ptr1)+strlen(ptr2)+strlen(ptr3)+10);
-  Serial.print("Memory allocated for MQTTMessage:");
-  Serial.println(strlen(ptr1)+strlen(ptr2)+strlen(ptr3)+10);
   
   strcpy(message, "[");
   strcat(message, ptr1);

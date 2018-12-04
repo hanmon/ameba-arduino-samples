@@ -19,8 +19,8 @@
 #include <ArduinoJson.h>
 // Update these with values suitable for your network.
 
-char ssid[] = "chtti";     // your network SSID (name)
-char pass[] = "12345678";  // your network password
+char ssid[] = "";     // your network SSID (name)
+char pass[] = "";  // your network password
 int status  = WL_IDLE_STATUS;    // the Wifi radio's status
 
 
@@ -68,8 +68,9 @@ void callback(char* topic, byte* payload, unsigned int length) {
 void rawTask() {
   if ((millis() - previousRawTime) > rawTimer) {
     previousRawTime = millis();
-    //char* mqttMessage=generateMQTTMessage(random(60,70),random(20,25),random(0,1000));
-    char* mqttMessage=generateMQTTMessage(random(60,70),random(20,25),random(0,1000),random(0,1000),random(0,1000));
+    //char* mqttMessage=generateMQTTMessage(random(60,70),random(20,25));
+    char* mqttMessage=generateMQTTMessage(random(60,70),random(20,25),random(0,1000));
+    //char* mqttMessage=generateMQTTMessage(random(60,70),random(20,25),random(0,1000),random(0,1000),random(0,1000));
     strcpy(publishRawPayload,mqttMessage);
     free(mqttMessage);
     //mqttMessage.toCharArray(publishRawPayload, mqttMessage.length() + 1);

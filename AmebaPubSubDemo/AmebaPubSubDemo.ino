@@ -19,8 +19,8 @@
 #include <ArduinoJson.h>
 // Update these with values suitable for your network.
 
-char ssid[] = "chtti";     // your network SSID (name)
-char pass[] = "12345678";  // your network password
+char ssid[] = "";     // your network SSID (name)
+char pass[] = "";  // your network password
 int status  = WL_IDLE_STATUS;    // the Wifi radio's status
 
 
@@ -70,6 +70,7 @@ void rawTask() {
     previousRawTime = millis();
     float humid=getHumidityValue();
     float temp=getTemperatureValue();
+    //char* mqttMessage=generateMQTTMessage(random(60,70),random(20,30));
     char* mqttMessage=generateMQTTMessage(humid,temp);
     //char* mqttMessage=generateMQTTMessage(random(60,70),random(20,25),random(0,1000),random(0,1000),random(0,1000));
     strcpy(publishRawPayload,mqttMessage);
