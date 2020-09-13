@@ -1,0 +1,5 @@
+{
+    "sketch": "01-BtnControlLed.ino",
+    "board": "realtek:ameba:ameba_rtl8195a",
+    "port": "/dev/ttyACM0"
+}

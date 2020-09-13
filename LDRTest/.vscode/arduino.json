@@ -1,0 +1,5 @@
+{
+    "board": "realtek:ameba:ameba_rtl8195a",
+    "sketch": "LDRTest.ino",
+    "port": "/dev/ttyACM0"
+}

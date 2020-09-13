@@ -19,19 +19,19 @@
 #include <ArduinoJson.h>
 // Update these with values suitable for your network.
 
-char ssid[] = "";     // your network SSID (name)
-char pass[] = "";  // your network password
+char ssid[] = "chtti2502";     // your network SSID (name)
+char pass[] = "chtti2502";  // your network password
 int status  = WL_IDLE_STATUS;    // the Wifi radio's status
 
 
 char mqttServer[]     = "iot.cht.com.tw";
-char deviceId[]       = "10802236687";
+char deviceId[]       = "13650924095";
 char clientId[]       = "amebaClient";
-const char DEVICE_KEY[] = "DK2RZT3CWXFXX0AUX1";   //your api key
-char publishRawTopic[]   = "/v1/device/10802236687/rawdata";
+const char DEVICE_KEY[] = "DKZTB53HS3R1AAG9X7";   //your api key
+char publishRawTopic[]   = "/v1/device/13650924095/rawdata";
 char publishRawPayload[300] ;
 char logStr[200]; //for printing log string
-char subscribeTopic[] = "/v1/device/10802236687/sensor/rgb/rawdata";
+char subscribeTopic[] = "/v1/device/13650924095/sensor/rgb/rawdata";
 unsigned long previousRawTime = 0;     //storing previous publishing time
 int rawTimer = 10000;         //raw data timer, unit:msec
 //define ledPin

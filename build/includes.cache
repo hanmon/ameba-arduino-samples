@@ -1,0 +1,17 @@
+[
+  {
+    "Sourcefile": null,
+    "Include": "",
+    "Includepath": "/home/bruce/.arduino15/packages/realtek/hardware/ameba/2.0.6/cores/arduino"
+  },
+  {
+    "Sourcefile": null,
+    "Include": "",
+    "Includepath": "/home/bruce/.arduino15/packages/realtek/hardware/ameba/2.0.6/variants/rtl8195a"
+  },
+  {
+    "Sourcefile": "/home/bruce/win-data/project/ameba-arduino-samples/build/sketch/ReedRelay.ino.cpp",
+    "Include": "",
+    "Includepath": null
+  }
+]

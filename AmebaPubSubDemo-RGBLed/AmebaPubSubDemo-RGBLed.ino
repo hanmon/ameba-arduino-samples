@@ -19,25 +19,25 @@
 #include <ArduinoJson.h>
 // Update these with values suitable for your network.
 
-char ssid[] = "";     // your network SSID (name)
-char pass[] = "";  // your network password
+char ssid[] = "iotlab";     // your network SSID (name)
+char pass[] = "ims.1qaz";  // your network password
 int status  = WL_IDLE_STATUS;    // the Wifi radio's status
 
 
 char mqttServer[]     = "iot.cht.com.tw";
-char deviceId[]       = "10802236687";
+char deviceId[]       = "14474422533";
 char clientId[]       = "amebaClient";
-const char DEVICE_KEY[] = "DK2RZT3CWXFXX0AUX1";   //your api key
-char publishRawTopic[]   = "/v1/device/10802236687/rawdata";
+const char DEVICE_KEY[] = "DKBCYYZA93EFEGE5MG";   //your api key
+char publishRawTopic[]   = "/v1/device/14474422533/rawdata";
 char publishRawPayload[300] ;
 char logStr[200]; //for printing log string
-char subscribeTopic[] = "/v1/device/10802236687/sensor/rgb/rawdata";
+char subscribeTopic[] = "/v1/device/14474422533/sensor/rgb/rawdata";
 unsigned long previousRawTime = 0;     //storing previous publishing time
 int rawTimer = 10000;         //raw data timer, unit:msec
 //define ledPin
 const int ledPin=13;
 //define color value
-unsigned long rgbColorValue;
+unsigned long rgbColorValue=0;
 
 
 //instantiate PubSubCluent object
@@ -64,6 +64,11 @@ void callback(char* topic, byte* payload, unsigned int length) {
   Serial.println(logStr);
   rgbColorValue=value;
   setColor(rgbColorValue);
+  char* lcdStrRow0=(char*)malloc(20);
+  sprintf(lcdStrRow0,"RGB Value:%X",rgbColorValue);
+  clearLCD();
+  printOnLCD(lcdStrRow0,0);
+  free(lcdStrRow0);
   //digitalWrite(ledPin,(*value=='1'?HIGH:LOW));  //Switch led on or off according to value
   //unsigned long color=String(value).toInt();
   
@@ -81,16 +86,16 @@ void rawTask() {
     strcpy(publishRawPayload,mqttMessage);
     free(mqttMessage);
     //Show humid and temp on LCD
-    clearLCD();
-    char* lcdStrRow0=(char*)malloc(20);
+    //clearLCD();
+    //char* lcdStrRow0=(char*)malloc(20);
     //char* lcdStrRow1=(char*)malloc(20);
-    sprintf(lcdStrRow0,"RGB Value:%X",rgbColorValue);
+    //sprintf(lcdStrRow0,"RGB Value:%X",rgbColorValue);
     //sprintf(lcdStrRow0,"Humid:%2.2f%%",humid);
     //sprintf(lcdStrRow1,"PM2.5:%d ug/m3",pm25);
     //sprintf(lcdStrRow0,"Temp:%2.2f%cC",temp,0xDF);
-    printOnLCD(lcdStrRow0,0);
+    //printOnLCD(lcdStrRow0,0);
     //printOnLCD(lcdStrRow1,1);
-    free(lcdStrRow0);
+    //free(lcdStrRow0);
     //free(lcdStrRow1);
     Serial.print(F("publishRawPayload:"));
     Serial.println(publishRawPayload);

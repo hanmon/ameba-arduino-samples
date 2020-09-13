@@ -19,22 +19,22 @@
 #include <ArduinoJson.h>
 // Update these with values suitable for your network.
 
-char ssid[] = "";     // your network SSID (name)
-char pass[] = "";  // your network password
+char ssid[] = "boo";     // your network SSID (name)
+char pass[] = "@a123456";  // your network password
 int status  = WL_IDLE_STATUS;    // the Wifi radio's status
 
 
 char mqttServer[]     = "iot.cht.com.tw";
-char deviceId[]       = "10802236687";
+char deviceId[]       = "13650924095";
 char clientId[]       = "amebaClient";
-const char DEVICE_KEY[] = "DK2RZT3CWXFXX0AUX1";   //your api key
-char publishRawTopic[]   = "/v1/device/10802236687/rawdata";
+const char DEVICE_KEY[] = "DKZTB53HS3R1AAG9X7";   //your api key
+char publishRawTopic[]   = "/v1/device/13650924095/rawdata";
 char publishRawPayload[400] ;
 char displayRow0[30],displayRow1[30],displayRow2[30];
 char logStr[200]; //for printing log string
-char subscribeTopic[] = "/v1/device/10802236687/sensor/rgb/rawdata";
+char subscribeTopic[] = "/v1/device/13650924095/sensor/rgb/rawdata";
 unsigned long previousRawTime = 0;     //storing previous publishing time
-int rawTimer = 10000;         //raw data timer, unit:msec
+int rawTimer = 5000;         //raw data timer, unit:msec
 //define ledPin
 const int ledPin=13;
 
@@ -75,8 +75,8 @@ void rawTask() {
     int pm10=random(0,1000);
     int pm25=random(0,1000);
     int pm100=random(0,1000);
-    humid=getHumidityValue();
-    temp=getTemperatureValue();
+    //humid=getHumidityValue();
+    //temp=getTemperatureValue();
     int* pmValues=getPMValues();
     pm10=pmValues[0];
     pm25=pmValues[1];
@@ -92,7 +92,11 @@ void rawTask() {
     //clearLCD();
 //    char* lcdStrRow0=(char*)malloc(20);
 //    char* lcdStrRow1=(char*)malloc(20);
-    clearOLED();
+    //clearOLED();
+    serCursorToBegin();
+    printOnOLED("");
+    printOnOLED("");
+    printOnOLED("");
     serCursorToBegin();
     sprintf(displayRow0,"PM2.5:%d ug/m3",pm25);
     sprintf(displayRow1,"Temp:%2.2f%cC",temp,0xF7);
@@ -156,6 +160,7 @@ void setup()
   //initLCD();
   initOLED();
   //init PM2.5 Sensor
+  clearOLED();
   initUART2();
 }
 

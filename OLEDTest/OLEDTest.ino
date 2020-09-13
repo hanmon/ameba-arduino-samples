@@ -1,34 +1,42 @@
+#include <GraphicMaps.h>
+
+//#include <Adafruit_SSD1306.h>
+//#include <splash.h>
+
 //#include <Wire.h>
-//#include <SeeedOLED.h>
+#include <SeeedOLED.h>
 #include <Wire.h>
-#include <Adafruit_GFX.h>
-#include <Adafruit_SSD1306.h>
+//#include <Adafruit_GFX.h>
+//#include <Adafruit_SSD1306.h>
+#include "CHT_logo.h"
+#include "CHT_logo_v.h"
+
 #define OLED_RESET 4
-Adafruit_SSD1306 display(OLED_RESET);
+//Adafruit_SSD1306 display(OLED_RESET);
+//
+//void initOLED(){
+//  display.begin(SSD1306_SWITCHCAPVCC, 0x3C);
+//  display.display();
+//  delay(2000);
+//  display.clearDisplay();
+//  display.setTextSize(1);
+//  display.setTextColor(WHITE);
+//  display.setCursor(0,0);
+//  display.println("I'm Ameba!");
+//  display.setTextColor(BLACK, WHITE); // 'inverted' text
+//  display.println(3.141592);
+//  display.setTextSize(1);
+//  display.setTextColor(WHITE);
+//  display.print("0x"); display.println(0xDEADBEEF, HEX);
+//  display.display();
+//  delay(2000);
+//  display.clearDisplay();
+//}
 
 void initOLED(){
-  display.begin(SSD1306_SWITCHCAPVCC, 0x3C);
-  display.display();
-  delay(2000);
-  display.clearDisplay();
-  display.setTextSize(1);
-  display.setTextColor(WHITE);
-  display.setCursor(0,0);
-  display.println("I'm Ameba!");
-  display.setTextColor(BLACK, WHITE); // 'inverted' text
-  display.println(3.141592);
-  display.setTextSize(1);
-  display.setTextColor(WHITE);
-  display.print("0x"); display.println(0xDEADBEEF, HEX);
-  display.display();
-  delay(2000);
-  display.clearDisplay();
-}
-
-//void initOLED(){
-//    Wire.begin();
-//    SeeedOled.init();
-//    SeeedOled.clearDisplay();
+    Wire.begin();
+    SeeedOled.init();
+    SeeedOled.clearDisplay();
 //    SeeedOled.setTextXY(0,0);
 //    SeeedOled.putString("I'm Ameba!");
 //    SeeedOled.setTextXY(1,0);
@@ -37,47 +45,55 @@ void initOLED(){
 //    SeeedOled.putString("Humidity:");
 //    SeeedOled.setTextXY(3,0);
 //    SeeedOled.putString("PM2.5:");
+}
+
+//void clearOLED(){
+//  display.clearDisplay();
 //}
-//
-void clearOLED(){
-  display.clearDisplay();
-}
 
-void serCursorToBegin(){
- display.setCursor(0,0);
-}
+//void serCursorToBegin(){
+// display.setCursor(0,0);
+//}
 
-void printOnOLED(char* content){
-   //display.setCursor(row,0);
-   display.println(content);
-   display.display();
-  //  display.display();
- // delay(2000);
- 
-}
+//void printOnOLED(char* content){
+//   //display.setCursor(row,0);
+//   display.println(content);
+//   display.display();
+//  //  display.display();
+// // delay(2000);
+// 
+//}
 void setup()
 {
   initOLED();
   //init PM2.5 Sensor
 //  initUART2();
+//  delay(1000);
+//   SeeedOled.clearDisplay();
+ //SeeedOled.drawBitmap(pm25,(int)sizeof(pm25)); 
+ 
+   SeeedOled.drawBitmap(CHT_logo_v,(int)sizeof(CHT_logo_v));
+//  SeeedOled.display();
+ // delay(1000);
+ // Serial.println("size of pm25:"+String(sizeof(pm25)));
 }
 int startnum=241;
 void loop() {
-  display.clearDisplay();
-  display.setTextSize(2);
-  display.setTextColor(WHITE);
-  display.setCursor(0,0); 
-//  for (int i = startnum; i < startnum+20; i++)  {
-//    display.print((char)i); 
-//  }
-  display.print((char)247); 
-//  display.print("start:"); 
-//  display.println(startnum); 
-//  display.print("end:"); 
-//  display.println(startnum+20); 
-  
-  display.display();
-  delay(5000);  //waits 5 seconds, change to longer if you need more time to view the display
-  startnum = startnum + 20;  //increments the starting number for the next loop by 20
+//  display.clearDisplay();
+//  display.setTextSize(2);
+//  display.setTextColor(WHITE);
+//  display.setCursor(0,0); 
+////  for (int i = startnum; i < startnum+20; i++)  {
+////    display.print((char)i); 
+////  }
+//  display.print(startnum); 
+////  display.print("start:"); 
+////  display.println(startnum); 
+////  display.print("end:"); 
+////  display.println(startnum+20); 
+//  
+//  display.display();
+//  delay(5000);  //waits 5 seconds, change to longer if you need more time to view the display
+//  startnum = startnum + 20;  //increments the starting number for the next loop by 20
   
 }

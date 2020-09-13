@@ -1,0 +1,5 @@
+{
+    "sketch": "RGBLedControl.ino",
+    "board": "realtek:ameba:ameba_rtl8195a",
+    "output": "../build"
+}

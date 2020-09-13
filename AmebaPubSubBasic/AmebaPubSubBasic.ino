@@ -19,21 +19,22 @@
 #include <ArduinoJson.h>
 // Update these with values suitable for your network.
 
-char ssid[] = "";     // your network SSID (name)
-char pass[] = "";  // your network password
+char ssid[] = "chtti_NC";     // your network SSID (name)
+char pass[] = "@a123456";  // your network password
 int status  = WL_IDLE_STATUS;    // the Wifi radio's status
 
 
 char mqttServer[]     = "iot.cht.com.tw";
-char deviceId[]       = "10802236687";
-char clientId[]       = "amebaClient";
-const char DEVICE_KEY[] = "DK2RZT3CWXFXX0AUX1";   //your api key
-char publishRawTopic[]   = "/v1/device/10802236687/rawdata";
-char publishRawPayload[300] ;
+char deviceId[]       = "17598687058";
+char clientId[]       = "amebaClient1";
+const char DEVICE_KEY[] = "DK1C5C4F3RUM4M531Y";   //your api key
+char publishRawTopic[]   = "/v1/device/16387341353/rawdata";
+char publishRawPayload[500] ;
 char logStr[200]; //for printing log string
-char subscribeTopic[] = "/v1/device/10802236687/sensor/rgb/rawdata";
+char subscribeTopic[] = "/v1/device/16387341353/sensor/rgb/rawdata";
+char sensorId[]="cnc";
 unsigned long previousRawTime = 0;     //storing previous publishing time
-int rawTimer = 10000;         //raw data timer, unit:msec
+int rawTimer = 5000;         //raw data timer, unit:msec
 //define ledPin
 const int ledPin=13;
 
@@ -68,17 +69,22 @@ void callback(char* topic, byte* payload, unsigned int length) {
 void rawTask() {
   if ((millis() - previousRawTime) > rawTimer) {
     previousRawTime = millis();
-    //char* mqttMessage=generateMQTTMessage(random(60,70),random(20,25));
-    char* mqttMessage=generateMQTTMessage(random(60,70),random(20,25),random(0,1000));
-    //char* mqttMessage=generateMQTTMessage(random(60,70),random(20,25),random(0,1000),random(0,1000),random(0,1000));
+    int sensorValues[100];
+    for(int i=0;i<100;i++){
+      sensorValues[i]=random(0,100);
+    }
+    char* mqttMessage=generateMqttRequestBody(sensorId,sensorValues,100);
     strcpy(publishRawPayload,mqttMessage);
-    free(mqttMessage);
+    
     //mqttMessage.toCharArray(publishRawPayload, mqttMessage.length() + 1);
     //client.publish(publishRawTopic, publishRawPayload);
     Serial.print(F("publishRawPayload:"));
     Serial.println(publishRawPayload);
-    int result = client.publish(publishRawTopic, publishRawPayload);
-    result == 1 ? Serial.println(F("MQTT publish succeeded")) : Serial.println(F("MQTT publish failed"));
+    Serial.print("publishRawPayload length:");
+    Serial.println(strlen(publishRawPayload));
+    boolean result = client.publish(publishRawTopic, publishRawPayload,strlen(publishRawPayload));
+    result == true ? Serial.println(F("MQTT publish succeeded")) : Serial.println(F("MQTT publish failed"));
+    free(mqttMessage);
   }
 }
 

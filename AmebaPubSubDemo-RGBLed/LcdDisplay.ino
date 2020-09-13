@@ -13,7 +13,7 @@ void initLCD(){
   lcd.print("I'm Ameba");
 }
 
-void printOnLCD(String content,int row){
+void printOnLCD(char* content,int row){
   lcd.setCursor(0,row);
   lcd.print(content);
 }

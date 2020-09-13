@@ -1,0 +1,6 @@
+{
+    "port": "COM12",
+    "board": "realtek:Ameba1:ameba_rtl8195a",
+    "sketch": "blinkLedTest.ino",
+    "output": "..\\build"
+}

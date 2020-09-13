@@ -1,0 +1,19 @@
+{
+    "configurations": [
+        {
+            "name": "Linux",
+            "includePath": [
+                "/home/bruce/.arduino15/packages/realtek/tools/**",
+                "/home/bruce/.arduino15/packages/realtek/hardware/ameba/2.0.6/**"
+            ],
+            "forcedInclude": [
+                "/home/bruce/.arduino15/packages/realtek/hardware/ameba/2.0.6/cores/arduino/Arduino.h"
+            ],
+            "intelliSenseMode": "gcc-x64",
+            "compilerPath": "/usr/bin/gcc",
+            "cStandard": "c11",
+            "cppStandard": "c++17"
+        }
+    ],
+    "version": 4
+}

@@ -1,0 +1,5 @@
+{
+    "sketch": "OLEDTest-adafruit.ino",
+    "board": "realtek:ameba:ameba_rtl8195a",
+    "port": "COM5"
+}

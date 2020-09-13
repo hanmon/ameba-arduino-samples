@@ -1,0 +1,16 @@
+{
+    "configurations": [
+        {
+            "name": "Win32",
+            "includePath": [
+                "C:\\Users\\chtti\\AppData\\Local\\Arduino15\\packages\\realtek\\tools\\**",
+                "C:\\Users\\chtti\\AppData\\Local\\Arduino15\\packages\\realtek\\hardware\\ameba\\2.0.6\\**"
+            ],
+            "forcedInclude": [
+                "C:\\Users\\chtti\\AppData\\Local\\Arduino15\\packages\\realtek\\hardware\\ameba\\2.0.6\\cores\\arduino\\Arduino.h"
+            ],
+            "intelliSenseMode": "msvc-x64"
+        }
+    ],
+    "version": 4
+}

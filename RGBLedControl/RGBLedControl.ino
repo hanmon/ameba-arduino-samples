@@ -49,7 +49,7 @@ void showSevenColors() {
     red = (colorMap[i] & 0xFF0000) >> 16;
     green = (colorMap[i] & 0xFF00) >> 8;
     blue = colorMap[i] & 0xFF;
-    Serial.println("R,G,B" + String(red) + "," + String(green) + "," + String(blue));
+    Serial.println("R,G,B" + String(red) + "," + String(green) + "," + String(blue)+","+String(colorName[i]));
     setColor(red, green, blue);
     lcd.clear();
     lcd.setCursor(0, 0);
@@ -98,4 +98,3 @@ void setColor(int red, int green, int blue) {
 //      break;
 //  }
 //}
-
