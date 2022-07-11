@@ -1,0 +1,6 @@
+{
+    "sketch": "SerialControlLED.ino",
+    "output": "build",
+    "board": "realtek:ameba:ameba_rtl8195a",
+    "port": "COM8"
+}

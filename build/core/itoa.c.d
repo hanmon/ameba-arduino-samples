@@ -1,3 +1,3 @@
-/home/bruce/win-data/project/ameba-arduino-samples/build/core/itoa.c.o: \
- /home/bruce/.arduino15/packages/realtek/hardware/ameba/2.0.6/cores/arduino/itoa.c \
- /home/bruce/.arduino15/packages/realtek/hardware/ameba/2.0.6/cores/arduino/itoa.h
+d:\project\ameba-arduino-samples\build\core\itoa.c.o: \
+ C:\Users\bruce\AppData\Local\Arduino15\packages\realtek\hardware\ameba\2.0.5\cores\arduino\itoa.c \
+ C:\Users\bruce\AppData\Local\Arduino15\packages\realtek\hardware\ameba\2.0.5\cores\arduino\itoa.h

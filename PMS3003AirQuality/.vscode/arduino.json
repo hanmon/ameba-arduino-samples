@@ -1,0 +1,6 @@
+{
+    "sketch": "PMS3003AirQuality.ino",
+    "board": "realtek:ameba:ameba_rtl8195a",
+    "output": "build",
+    "port": "COM8"
+}

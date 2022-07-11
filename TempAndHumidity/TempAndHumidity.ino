@@ -1,6 +1,6 @@
 //TempAndHumidity, Sensing by Pin6
 #include "DHT.h"
-#define DHTPIN 6
+#define DHTPIN 8
 #define DHTTYPE DHT11   // DHT 11
 
 DHT dht(DHTPIN, DHTTYPE);// Initialize DHT sensor.

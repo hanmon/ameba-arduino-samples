@@ -1,5 +1,6 @@
 {
     "sketch": "HallSensorTest.ino",
     "board": "realtek:ameba:ameba_rtl8195a",
-    "port": "/dev/ttyACM0"
+    "output": "build",
+    "port": "COM8"
 }

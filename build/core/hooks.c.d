@@ -1,2 +1,2 @@
-/home/bruce/win-data/project/ameba-arduino-samples/build/core/hooks.c.o: \
- /home/bruce/.arduino15/packages/realtek/hardware/ameba/2.0.6/cores/arduino/hooks.c
+d:\project\ameba-arduino-samples\build\core\hooks.c.o: \
+ C:\Users\bruce\AppData\Local\Arduino15\packages\realtek\hardware\ameba\2.0.5\cores\arduino\hooks.c

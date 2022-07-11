@@ -1,0 +1,6 @@
+{
+    "sketch": "PMS3003Basic.ino",
+    "output": "build",
+    "board": "realtek:ameba:ameba_rtl8195a",
+    "port": "COM8"
+}

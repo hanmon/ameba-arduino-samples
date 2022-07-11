@@ -4,6 +4,8 @@ int val; //numeric variable
 
 void setup()
 {
+	Serial.begin(115200);
+	Serial.println("Example:HallSensorTest");
 	pinMode(ledR, OUTPUT); //set LED pin as output
 	pinMode(sensor, INPUT); //set sensor pin as input
 }

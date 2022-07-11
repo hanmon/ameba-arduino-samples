@@ -6,6 +6,7 @@ void setup()
     pinMode(ledPin,OUTPUT);
     pinMode(buzzerPin,OUTPUT);
     Serial.begin(115200);
+    Serial.print("Example:ReedRelay");
     lastState=digitalRead(reedPin);
 }
 

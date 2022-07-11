@@ -1,5 +1,6 @@
 {
     "sketch": "UltraSonic.ino",
     "board": "realtek:ameba:ameba_rtl8195a",
-    "port": "COM5"
+    "output": "build",
+    "port": "COM8"
 }
