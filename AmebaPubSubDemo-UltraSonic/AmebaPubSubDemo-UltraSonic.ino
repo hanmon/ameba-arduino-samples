@@ -27,7 +27,7 @@ int status  = WL_IDLE_STATUS;    // the Wifi radio's status
 char mqttServer[]     = "iot.cht.com.tw";
 char deviceId[]       = "10802236687";
 char clientId[]       = "amebaClient";
-const char DEVICE_KEY[] = "DK2RZT3CWXFXX0AUX1";   //your api key
+const char DEVICE_KEY[] = "";   //your api key
 char publishRawTopic[]   = "/v1/device/10802236687/rawdata";
 char publishRawPayload[300] ;
 char logStr[200]; //for printing log string

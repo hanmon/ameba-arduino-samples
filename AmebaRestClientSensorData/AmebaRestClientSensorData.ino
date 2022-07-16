@@ -2,7 +2,7 @@
 #include <WiFi.h>
 #include <ArduinoJson.h>
 char ssid[] = "iotlab"; //  your network SSID (name)
-char pass[] = "ims.1qaz";    // your network password (use for WPA, or use as key for WEP)
+char pass[] = "";    // your network password (use for WPA, or use as key for WEP)
 int keyIndex = 0;            // your network key Index number (needed only for WEP)
 
 int status = WL_IDLE_STATUS;
@@ -11,7 +11,7 @@ char server[] = "iot.cht.com.tw";    // name address for Google (using DNS)
 char baseURL[] = "/iot/v1";
 unsigned long postInterval = 3000; //Interval of sending http request
 char deviceId[]       = "17699122262";     //Device ID for your IoT device
-const char DEVICE_KEY[] = "DKCWX5KYHUBYYZMZXH";   //Device Key of your IoT Device
+const char DEVICE_KEY[] = "";   //Device Key of your IoT Device
 char postSensorId[] = "vSensor";
 
 WiFiClient client;

@@ -20,14 +20,14 @@
 // Update these with values suitable for your network.
 
 char ssid[] = "iotlab";     // your network SSID (name)
-char pass[] = "ims.1qaz";  // your network password
+char pass[] = "";  // your network password
 int status  = WL_IDLE_STATUS;    // the Wifi radio's status
 
 
 char mqttServer[]     = "iot.cht.com.tw";
 char deviceId[]       = "14474422533";
 char clientId[]       = "amebaClient";
-const char DEVICE_KEY[] = "DKBCYYZA93EFEGE5MG";   //your api key
+const char DEVICE_KEY[] = "";   //your api key
 char publishRawTopic[]   = "/v1/device/14474422533/rawdata";
 char publishRawPayload[300] ;
 char logStr[200]; //for printing log string

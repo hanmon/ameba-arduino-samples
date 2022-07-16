@@ -25,13 +25,13 @@
 // Update these with values suitable for your network.
 
 char ssid[] = "chtti_NC";     // your network SSID (name)
-char pass[] = "@a123456";  // your network password
+char pass[] = "";  // your network password
 int status  = WL_IDLE_STATUS;    // the Wifi radio's status
 
 
 char mqttServer[]     = "iot.cht.com.tw";  //domain of CHT IoT Platform
 char deviceId[]       = "16387341353";     //Device ID for your IoT device
-const char DEVICE_KEY[] = "DKHZEGTA4MEB2GCMYB";   //Device Key of your IoT Device
+const char DEVICE_KEY[] = "";   //Device Key of your IoT Device
 char clientId[]       = "AmebaClient1";  //MQTT Client ID
 
 
