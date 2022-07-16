@@ -1,5 +1,5 @@
 {
-    "sketch": "FindString.ino",
+    "sketch": "ASCiiLookup.ino",
     "output": "build",
     "board": "realtek:ameba:ameba_rtl8195a",
     "port": "COM9"

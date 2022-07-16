@@ -4,10 +4,11 @@ void setup()
 {
     // Initialize serial and wait for port to open:
     Serial.begin(115200);
-    Serial.println("A test for\"find\"");
+    Serial.println("A test for \"find\"");
 }
 void loop()
 {
+
 }
 void serialEvent()
 {

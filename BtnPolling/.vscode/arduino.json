@@ -2,5 +2,5 @@
     "sketch": "BtnPolling.ino",
     "board": "realtek:ameba:ameba_rtl8195a",
     "output": "build",
-    "port": "COM8"
+    "port": "COM9"
 }
