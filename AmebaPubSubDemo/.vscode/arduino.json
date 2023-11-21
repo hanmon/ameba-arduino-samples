@@ -1,0 +1,6 @@
+{
+    "board": "realtek:ameba:ameba_rtl8195a",
+    "output": "build",
+    "sketch": "AmebaPubSubDemo.ino",
+    "port": "COM8"
+}

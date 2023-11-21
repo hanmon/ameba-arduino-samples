@@ -45,10 +45,12 @@ void loop() {
 
 void showSevenColors() {
   int red, green, blue;
+  char strBuff[30];
   for(int i=0;i<sizeof(colorMap)/sizeof(unsigned long);i++){
     red = (colorMap[i] & 0xFF0000) >> 16;
     green = (colorMap[i] & 0xFF00) >> 8;
     blue = colorMap[i] & 0xFF;
+    sprintf("");
     Serial.println("R,G,B" + String(red) + "," + String(green) + "," + String(blue)+","+String(colorName[i]));
     setColor(red, green, blue);
     lcd.clear();

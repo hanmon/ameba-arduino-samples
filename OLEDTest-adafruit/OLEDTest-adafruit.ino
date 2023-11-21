@@ -4,6 +4,7 @@
 #include <Adafruit_GFX.h>
 #include <Adafruit_SSD1306.h>
 #include "CHT_logo.h"
+#include "LASS.h"
 #define OLED_RESET -1
 Adafruit_SSD1306 display(OLED_RESET);
 
@@ -63,7 +64,11 @@ void setup()
 //  initUART2();
   display.drawBitmap(0,0,CHT_logo,128,64,1);
   display.display();
-  delay(1000);
+  delay(5000);
+  display.clearDisplay();
+  display.drawBitmap(0,0,LASS,128,64,1);
+  display.display();
+  delay(5000);
 }
 int startnum=241;
 void loop() {

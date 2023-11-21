@@ -1,6 +1,6 @@
 {
     "sketch": "RGBLedTest.ino",
     "board": "realtek:ameba:ameba_rtl8195a",
-    "output": "../build",
-    "port": "/dev/ttyACM0"
+    "output": "build",
+    "port": "COM8"
 }

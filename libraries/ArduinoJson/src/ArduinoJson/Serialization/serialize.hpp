@@ -14,38 +14,32 @@
 namespace ARDUINOJSON_NAMESPACE {
 
 template <template <typename> class TSerializer, typename TSource,
-          typename TDestination>
-size_t doSerialize(const TSource &source, TDestination &destination) {
-  TSerializer<TDestination> serializer(destination);
+          typename TPrint>
+typename enable_if<!IsWriteableString<TPrint>::value, size_t>::type serialize(
+    const TSource &source, TPrint &destination) {
+  TSerializer<TPrint> serializer(destination);
   source.accept(serializer);
   return serializer.bytesWritten();
 }
 
 #if ARDUINOJSON_ENABLE_STD_STREAM
 template <template <typename> class TSerializer, typename TSource>
-size_t serialize(const TSource &source, std::ostream &destination) {
-  StreamWriter writer(destination);
-  return doSerialize<TSerializer>(source, writer);
-}
-#endif
-
-#if ARDUINOJSON_ENABLE_ARDUINO_PRINT
-template <template <typename> class TSerializer, typename TSource>
-size_t serialize(const TSource &source, Print &destination) {
-  return doSerialize<TSerializer>(source, destination);
+size_t serialize(const TSource &source, std::ostream &os) {
+  StreamWriter writer(os);
+  return serialize<TSerializer>(source, writer);
 }
 #endif
 
 template <template <typename> class TSerializer, typename TSource>
 size_t serialize(const TSource &source, char *buffer, size_t bufferSize) {
   StaticStringWriter writer(buffer, bufferSize);
-  return doSerialize<TSerializer>(source, writer);
+  return serialize<TSerializer>(source, writer);
 }
 
 template <template <typename> class TSerializer, typename TSource, size_t N>
 size_t serialize(const TSource &source, char (&buffer)[N]) {
   StaticStringWriter writer(buffer, N);
-  return doSerialize<TSerializer>(source, writer);
+  return serialize<TSerializer>(source, writer);
 }
 
 template <template <typename> class TSerializer, typename TSource,
@@ -53,7 +47,7 @@ template <template <typename> class TSerializer, typename TSource,
 typename enable_if<IsWriteableString<TString>::value, size_t>::type serialize(
     const TSource &source, TString &str) {
   DynamicStringWriter<TString> writer(str);
-  return doSerialize<TSerializer>(source, writer);
+  return serialize<TSerializer>(source, writer);
 }
 
 }  // namespace ARDUINOJSON_NAMESPACE

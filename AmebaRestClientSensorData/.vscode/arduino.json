@@ -1,0 +1,5 @@
+{
+    "board": "realtek:ameba:ameba_rtl8195a",
+    "port": "COM8",
+    "sketch": "AmebaRestClientSensorData.ino"
+}

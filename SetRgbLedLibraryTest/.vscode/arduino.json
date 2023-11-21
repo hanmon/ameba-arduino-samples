@@ -1,0 +1,5 @@
+{
+    "board": "realtek:ameba:ameba_rtl8195a",
+    "sketch": "SetRgbLed.ino",
+    "port": "COM9"
+}

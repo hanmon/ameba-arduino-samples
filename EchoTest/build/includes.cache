@@ -2,15 +2,15 @@
   {
     "Sourcefile": null,
     "Include": "",
-    "Includepath": "C:\\Users\\bruce\\AppData\\Local\\Arduino15\\packages\\realtek\\hardware\\ameba\\2.0.5\\cores\\arduino"
+    "Includepath": "C:\\Users\\bruce\\AppData\\Local\\Arduino15\\packages\\realtek\\hardware\\ameba\\2.0.6\\cores\\arduino"
   },
   {
     "Sourcefile": null,
     "Include": "",
-    "Includepath": "C:\\Users\\bruce\\AppData\\Local\\Arduino15\\packages\\realtek\\hardware\\ameba\\2.0.5\\variants\\rtl8195a"
+    "Includepath": "C:\\Users\\bruce\\AppData\\Local\\Arduino15\\packages\\realtek\\hardware\\ameba\\2.0.6\\variants\\rtl8195a"
   },
   {
-    "Sourcefile": "d:\\project\\ameba-arduino-samples\\EchoTest\\build\\sketch\\EchoTest.ino.cpp",
+    "Sourcefile": "D:\\project\\ameba-arduino-samples\\EchoTest\\build\\sketch\\EchoTest.ino.cpp",
     "Include": "",
     "Includepath": null
   }

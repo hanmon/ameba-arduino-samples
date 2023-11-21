@@ -21,5 +21,6 @@ void setup() {
 
 void loop() {
   btnState = digitalRead(btnPin);   // 讀取輸入腳位
+  Serial.println(btnState?"HIGH":"LOW");
   digitalWrite(ledPin, !btnState);  // 依據輸入腳位的狀態設定LED狀態
 }

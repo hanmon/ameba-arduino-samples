@@ -6,16 +6,6 @@
 
 namespace ARDUINOJSON_NAMESPACE {
 
-template <typename T>
-struct IsCharOrVoid {
-  static const bool value =
-      is_same<T, void>::value || is_same<T, char>::value ||
-      is_same<T, unsigned char>::value || is_same<T, signed char>::value;
-};
-
-template <typename T>
-struct IsCharOrVoid<const T> : IsCharOrVoid<T> {};
-
 class UnsafeCharPointerReader {
   const char* _ptr;
 
@@ -23,8 +13,13 @@ class UnsafeCharPointerReader {
   explicit UnsafeCharPointerReader(const char* ptr)
       : _ptr(ptr ? ptr : reinterpret_cast<const char*>("")) {}
 
-  int read() {
-    return static_cast<unsigned char>(*_ptr++);
+  char read() {
+    return static_cast<char>(*_ptr++);
+  }
+
+  bool ended() const {
+    // we cannot know, that's why it's unsafe
+    return false;
   }
 };
 
@@ -36,25 +31,22 @@ class SafeCharPointerReader {
   explicit SafeCharPointerReader(const char* ptr, size_t len)
       : _ptr(ptr ? ptr : reinterpret_cast<const char*>("")), _end(_ptr + len) {}
 
-  int read() {
-    if (_ptr < _end)
-      return static_cast<unsigned char>(*_ptr++);
-    else
-      return -1;
+  char read() {
+    return static_cast<char>(*_ptr++);
+  }
+
+  bool ended() const {
+    return _ptr == _end;
   }
 };
 
 template <typename TChar>
-inline typename enable_if<IsCharOrVoid<TChar>::value,
-                          UnsafeCharPointerReader>::type
-makeReader(TChar* input) {
+inline UnsafeCharPointerReader makeReader(TChar* input) {
   return UnsafeCharPointerReader(reinterpret_cast<const char*>(input));
 }
 
 template <typename TChar>
-inline
-    typename enable_if<IsCharOrVoid<TChar>::value, SafeCharPointerReader>::type
-    makeReader(TChar* input, size_t n) {
+inline SafeCharPointerReader makeReader(TChar* input, size_t n) {
   return SafeCharPointerReader(reinterpret_cast<const char*>(input), n);
 }
 

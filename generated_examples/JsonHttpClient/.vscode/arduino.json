@@ -1,0 +1,5 @@
+{
+    "sketch": "JsonHttpClient.ino",
+    "port": "COM1",
+    "board": "realtek:ameba:ameba_rtl8195a"
+}

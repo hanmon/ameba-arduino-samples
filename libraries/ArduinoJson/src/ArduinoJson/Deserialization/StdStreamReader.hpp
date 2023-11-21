@@ -18,8 +18,12 @@ class StdStreamReader {
   explicit StdStreamReader(std::istream& stream)
       : _stream(stream), _current(0) {}
 
-  int read() {
-    return _stream.get();
+  bool ended() const {
+    return _stream.eof();
+  }
+
+  char read() {
+    return static_cast<char>(_stream.get());
   }
 
  private:

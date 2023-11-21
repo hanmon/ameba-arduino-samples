@@ -24,14 +24,16 @@
 #include <ArduinoJson.h>
 // Update these with values suitable for your network.
 
-char ssid[] = "chtti_NC";     // your network SSID (name)
-char pass[] = "";  // your network password
+// char ssid[] = "boo";     // your network SSID (name)
+// char pass[] = "@a123456";  // your network password
+char ssid[] = "Bruce";     // your network SSID (name)
+char pass[] = "ims.1qaz";  // your network password
 int status  = WL_IDLE_STATUS;    // the Wifi radio's status
 
 
 char mqttServer[]     = "iot.cht.com.tw";  //domain of CHT IoT Platform
-char deviceId[]       = "16387341353";     //Device ID for your IoT device
-const char DEVICE_KEY[] = "";   //Device Key of your IoT Device
+char deviceId[]       = "31080836893";     //Device ID for your IoT device
+const char DEVICE_KEY[] = "DKMS3R2SGRE42USE5Z";   //Device Key of your IoT Device
 char clientId[]       = "AmebaClient1";  //MQTT Client ID
 
 
@@ -44,7 +46,7 @@ char subSensorId[] = "vActuator"; //Sensor ID for subscribing state
 
 int pubInterval = 5000;         //Interval for Publishing MQTT Message, unit:msec
 //define ledPin, for emulating the action of relay
-const int ledPin = 13;
+const int ledPin = 9;
 
 
 //instantiate PubSubCluent object
@@ -77,10 +79,10 @@ void callback(char* topic, byte* payload, unsigned int length) {
 }
 void relayAction(unsigned long value) {
   if (value == 1) {
-    digitalWrite(ledPin, HIGH);
+    digitalWrite(ledPin, LOW);
   }
   else {
-    digitalWrite(ledPin, LOW);
+    digitalWrite(ledPin, HIGH);
   }
 }
 

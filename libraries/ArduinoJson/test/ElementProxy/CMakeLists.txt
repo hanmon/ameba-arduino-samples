@@ -5,7 +5,6 @@
 add_executable(ElementProxyTests
 	add.cpp
 	clear.cpp
-	compare.cpp
 	remove.cpp
 	set.cpp
 	size.cpp

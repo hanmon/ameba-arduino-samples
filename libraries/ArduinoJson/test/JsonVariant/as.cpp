@@ -6,10 +6,6 @@
 #include <stdint.h>
 #include <catch.hpp>
 
-namespace my {
-using ARDUINOJSON_NAMESPACE::isinf;
-}  // namespace my
-
 static const char* null = 0;
 
 TEST_CASE("JsonVariant::as()") {
@@ -98,6 +94,7 @@ TEST_CASE("JsonVariant::as()") {
   SECTION("set(\"42\")") {
     variant.set("42");
 
+    REQUIRE(variant.as<bool>());
     REQUIRE(variant.as<long>() == 42L);
   }
 
@@ -114,6 +111,7 @@ TEST_CASE("JsonVariant::as()") {
   SECTION("set(std::string(\"4.2\"))") {
     variant.set(std::string("4.2"));
 
+    REQUIRE(variant.as<bool>() == true);
     REQUIRE(variant.as<long>() == 4L);
     REQUIRE(variant.as<double>() == 4.2);
     REQUIRE(variant.as<char*>() == std::string("4.2"));
@@ -123,31 +121,8 @@ TEST_CASE("JsonVariant::as()") {
   SECTION("set(\"true\")") {
     variant.set("true");
 
-    REQUIRE(variant.as<bool>() == true);
-    REQUIRE(variant.as<int>() == 0);
-  }
-
-  SECTION("set(-1e300)") {
-    variant.set(-1e300);
-
-    REQUIRE(variant.as<double>() == -1e300);
-    REQUIRE(variant.as<float>() < 0);
-    REQUIRE(my::isinf(variant.as<float>()));
-  }
-
-  SECTION("set(1e300)") {
-    variant.set(1e300);
-
-    REQUIRE(variant.as<double>() == 1e300);
-    REQUIRE(variant.as<float>() > 0);
-    REQUIRE(my::isinf(variant.as<float>()));
-  }
-
-  SECTION("set(1e300)") {
-    variant.set(1e-300);
-
-    REQUIRE(variant.as<double>() == 1e-300);
-    REQUIRE(variant.as<float>() == 0);
+    REQUIRE(variant.as<bool>());
+    REQUIRE(variant.as<long>() == 1L);
   }
 
   SECTION("to<JsonObject>()") {

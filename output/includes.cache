@@ -1,0 +1,62 @@
+[
+  {
+    "Sourcefile": null,
+    "Include": "",
+    "Includepath": "C:\\Users\\bruce\\AppData\\Local\\Arduino15\\packages\\realtek\\hardware\\ameba\\2.0.6\\cores\\arduino"
+  },
+  {
+    "Sourcefile": null,
+    "Include": "",
+    "Includepath": "C:\\Users\\bruce\\AppData\\Local\\Arduino15\\packages\\realtek\\hardware\\ameba\\2.0.6\\variants\\rtl8195a"
+  },
+  {
+    "Sourcefile": "d:\\project\\ameba-arduino-samples\\output\\sketch\\AmebaPubSubBasic_v6.ino.cpp",
+    "Include": "WiFi.h",
+    "Includepath": "C:\\Users\\bruce\\AppData\\Local\\Arduino15\\packages\\realtek\\hardware\\ameba\\2.0.6\\libraries\\WiFi\\src"
+  },
+  {
+    "Sourcefile": "d:\\project\\ameba-arduino-samples\\output\\sketch\\AmebaPubSubBasic_v6.ino.cpp",
+    "Include": "PubSubClient.h",
+    "Includepath": "D:\\project\\ameba-arduino-samples\\libraries\\PubSubClient\\src"
+  },
+  {
+    "Sourcefile": "d:\\project\\ameba-arduino-samples\\output\\sketch\\AmebaPubSubBasic_v6.ino.cpp",
+    "Include": "ArduinoJson.h",
+    "Includepath": "D:\\project\\ameba-arduino-samples\\libraries\\ArduinoJson\\src"
+  },
+  {
+    "Sourcefile": "d:\\project\\ameba-arduino-samples\\output\\sketch\\AmebaPubSubBasic_v6.ino.cpp",
+    "Include": "",
+    "Includepath": null
+  },
+  {
+    "Sourcefile": "C:\\Users\\bruce\\AppData\\Local\\Arduino15\\packages\\realtek\\hardware\\ameba\\2.0.6\\libraries\\WiFi\\src\\WiFi.cpp",
+    "Include": "",
+    "Includepath": null
+  },
+  {
+    "Sourcefile": "C:\\Users\\bruce\\AppData\\Local\\Arduino15\\packages\\realtek\\hardware\\ameba\\2.0.6\\libraries\\WiFi\\src\\WiFiClient.cpp",
+    "Include": "",
+    "Includepath": null
+  },
+  {
+    "Sourcefile": "C:\\Users\\bruce\\AppData\\Local\\Arduino15\\packages\\realtek\\hardware\\ameba\\2.0.6\\libraries\\WiFi\\src\\WiFiSSLClient.cpp",
+    "Include": "",
+    "Includepath": null
+  },
+  {
+    "Sourcefile": "C:\\Users\\bruce\\AppData\\Local\\Arduino15\\packages\\realtek\\hardware\\ameba\\2.0.6\\libraries\\WiFi\\src\\WiFiServer.cpp",
+    "Include": "",
+    "Includepath": null
+  },
+  {
+    "Sourcefile": "C:\\Users\\bruce\\AppData\\Local\\Arduino15\\packages\\realtek\\hardware\\ameba\\2.0.6\\libraries\\WiFi\\src\\WiFiUdp.cpp",
+    "Include": "",
+    "Includepath": null
+  },
+  {
+    "Sourcefile": "D:\\project\\ameba-arduino-samples\\libraries\\PubSubClient\\src\\PubSubClient.cpp",
+    "Include": "",
+    "Includepath": null
+  }
+]

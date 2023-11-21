@@ -40,21 +40,13 @@ class MemberProxy : public VariantOperators<MemberProxy<TObject, TStringRef> >,
     return *this;
   }
 
-  // operator=(char*)
-  // operator=(const char*)
-  // operator=(const __FlashStringHelper*)
+  // operator=(char*) const
+  // operator=(const char*) const
+  // operator=(const __FlashStringHelper*) const
   template <typename TChar>
   FORCE_INLINE this_type &operator=(TChar *src) {
     getOrAddUpstreamMember().set(src);
     return *this;
-  }
-
-  FORCE_INLINE bool operator==(VariantConstRef rhs) const {
-    return static_cast<VariantConstRef>(getUpstreamMember()) == rhs;
-  }
-
-  FORCE_INLINE bool operator!=(VariantConstRef rhs) const {
-    return static_cast<VariantConstRef>(getUpstreamMember()) != rhs;
   }
 
   FORCE_INLINE void clear() const {

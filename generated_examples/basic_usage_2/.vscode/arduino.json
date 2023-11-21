@@ -1,0 +1,5 @@
+{
+    "sketch": "basic_usage.ino",
+    "port": "COM8",
+    "board": "realtek:ameba:ameba_rtl8195a"
+}

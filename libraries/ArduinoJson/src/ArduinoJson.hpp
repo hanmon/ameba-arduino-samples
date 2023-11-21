@@ -4,14 +4,6 @@
 
 #pragma once
 
-#ifndef ARDUINOJSON_DEBUG
-#ifdef __clang__
-#pragma clang system_header
-#elif defined __GNUC__
-#pragma GCC system_header
-#endif
-#endif
-
 #include "ArduinoJson/Namespace.hpp"
 
 #include "ArduinoJson/Array/ArrayRef.hpp"
@@ -36,8 +28,6 @@
 #include "ArduinoJson/MsgPack/MsgPackDeserializer.hpp"
 #include "ArduinoJson/MsgPack/MsgPackSerializer.hpp"
 
-#include "ArduinoJson/compatibility.hpp"
-
 namespace ArduinoJson {
 typedef ARDUINOJSON_NAMESPACE::ArrayConstRef JsonArrayConst;
 typedef ARDUINOJSON_NAMESPACE::ArrayRef JsonArray;
@@ -50,7 +40,6 @@ typedef ARDUINOJSON_NAMESPACE::String JsonString;
 typedef ARDUINOJSON_NAMESPACE::UInt JsonUInt;
 typedef ARDUINOJSON_NAMESPACE::VariantConstRef JsonVariantConst;
 typedef ARDUINOJSON_NAMESPACE::VariantRef JsonVariant;
-using ARDUINOJSON_NAMESPACE::BasicJsonDocument;
 using ARDUINOJSON_NAMESPACE::copyArray;
 using ARDUINOJSON_NAMESPACE::DeserializationError;
 using ARDUINOJSON_NAMESPACE::deserializeJson;

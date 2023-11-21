@@ -1,0 +1,187 @@
+[
+  {
+    "Sourcefile": null,
+    "Include": "",
+    "Includepath": "C:\\Users\\bruce\\AppData\\Local\\Arduino15\\packages\\realtek\\hardware\\ameba\\2.0.6\\cores\\arduino"
+  },
+  {
+    "Sourcefile": null,
+    "Include": "",
+    "Includepath": "C:\\Users\\bruce\\AppData\\Local\\Arduino15\\packages\\realtek\\hardware\\ameba\\2.0.6\\variants\\rtl8195a"
+  },
+  {
+    "Sourcefile": "d:\\project\\ameba-arduino-samples\\AmebaPubSubDemo-DHTandPM25OnOLED\\build\\sketch\\AmebaPubSubDemo-DHTandPM25OnOLED.ino.cpp",
+    "Include": "WiFi.h",
+    "Includepath": "C:\\Users\\bruce\\AppData\\Local\\Arduino15\\packages\\realtek\\hardware\\ameba\\2.0.6\\libraries\\WiFi\\src"
+  },
+  {
+    "Sourcefile": "d:\\project\\ameba-arduino-samples\\AmebaPubSubDemo-DHTandPM25OnOLED\\build\\sketch\\AmebaPubSubDemo-DHTandPM25OnOLED.ino.cpp",
+    "Include": "PubSubClient.h",
+    "Includepath": "D:\\project\\ameba-arduino-samples\\libraries\\PubSubClient\\src"
+  },
+  {
+    "Sourcefile": "d:\\project\\ameba-arduino-samples\\AmebaPubSubDemo-DHTandPM25OnOLED\\build\\sketch\\AmebaPubSubDemo-DHTandPM25OnOLED.ino.cpp",
+    "Include": "ArduinoJson.h",
+    "Includepath": "D:\\project\\ameba-arduino-samples\\libraries\\ArduinoJson\\src"
+  },
+  {
+    "Sourcefile": "d:\\project\\ameba-arduino-samples\\AmebaPubSubDemo-DHTandPM25OnOLED\\build\\sketch\\AmebaPubSubDemo-DHTandPM25OnOLED.ino.cpp",
+    "Include": "SetRgbLed.h",
+    "Includepath": "D:\\project\\ameba-arduino-samples\\libraries\\SetRgbLed"
+  },
+  {
+    "Sourcefile": "d:\\project\\ameba-arduino-samples\\AmebaPubSubDemo-DHTandPM25OnOLED\\build\\sketch\\AmebaPubSubDemo-DHTandPM25OnOLED.ino.cpp",
+    "Include": "Wire.h",
+    "Includepath": "C:\\Users\\bruce\\AppData\\Local\\Arduino15\\packages\\realtek\\hardware\\ameba\\2.0.6\\libraries\\Wire"
+  },
+  {
+    "Sourcefile": "d:\\project\\ameba-arduino-samples\\AmebaPubSubDemo-DHTandPM25OnOLED\\build\\sketch\\AmebaPubSubDemo-DHTandPM25OnOLED.ino.cpp",
+    "Include": "BMP180I2C.h",
+    "Includepath": "D:\\project\\ameba-arduino-samples\\libraries\\BMP180MI\\src"
+  },
+  {
+    "Sourcefile": "d:\\project\\ameba-arduino-samples\\AmebaPubSubDemo-DHTandPM25OnOLED\\build\\sketch\\AmebaPubSubDemo-DHTandPM25OnOLED.ino.cpp",
+    "Include": "DHT.h",
+    "Includepath": "C:\\Users\\bruce\\AppData\\Local\\Arduino15\\packages\\realtek\\hardware\\ameba\\2.0.6\\libraries\\GPIO"
+  },
+  {
+    "Sourcefile": "d:\\project\\ameba-arduino-samples\\AmebaPubSubDemo-DHTandPM25OnOLED\\build\\sketch\\AmebaPubSubDemo-DHTandPM25OnOLED.ino.cpp",
+    "Include": "Adafruit_GFX.h",
+    "Includepath": "D:\\project\\ameba-arduino-samples\\libraries\\Adafruit_GFX_Library"
+  },
+  {
+    "Sourcefile": "d:\\project\\ameba-arduino-samples\\AmebaPubSubDemo-DHTandPM25OnOLED\\build\\sketch\\AmebaPubSubDemo-DHTandPM25OnOLED.ino.cpp",
+    "Include": "Adafruit_SSD1306.h",
+    "Includepath": "D:\\project\\ameba-arduino-samples\\libraries\\Adafruit_SSD1306"
+  },
+  {
+    "Sourcefile": "d:\\project\\ameba-arduino-samples\\AmebaPubSubDemo-DHTandPM25OnOLED\\build\\sketch\\AmebaPubSubDemo-DHTandPM25OnOLED.ino.cpp",
+    "Include": "SPI.h",
+    "Includepath": "C:\\Users\\bruce\\AppData\\Local\\Arduino15\\packages\\realtek\\hardware\\ameba\\2.0.6\\libraries\\SPI"
+  },
+  {
+    "Sourcefile": "d:\\project\\ameba-arduino-samples\\AmebaPubSubDemo-DHTandPM25OnOLED\\build\\sketch\\AmebaPubSubDemo-DHTandPM25OnOLED.ino.cpp",
+    "Include": "SoftwareSerial.h",
+    "Includepath": "C:\\Users\\bruce\\AppData\\Local\\Arduino15\\packages\\realtek\\hardware\\ameba\\2.0.6\\libraries\\SoftwareSerial"
+  },
+  {
+    "Sourcefile": "d:\\project\\ameba-arduino-samples\\AmebaPubSubDemo-DHTandPM25OnOLED\\build\\sketch\\AmebaPubSubDemo-DHTandPM25OnOLED.ino.cpp",
+    "Include": "",
+    "Includepath": null
+  },
+  {
+    "Sourcefile": "C:\\Users\\bruce\\AppData\\Local\\Arduino15\\packages\\realtek\\hardware\\ameba\\2.0.6\\libraries\\WiFi\\src\\WiFi.cpp",
+    "Include": "",
+    "Includepath": null
+  },
+  {
+    "Sourcefile": "C:\\Users\\bruce\\AppData\\Local\\Arduino15\\packages\\realtek\\hardware\\ameba\\2.0.6\\libraries\\WiFi\\src\\WiFiClient.cpp",
+    "Include": "",
+    "Includepath": null
+  },
+  {
+    "Sourcefile": "C:\\Users\\bruce\\AppData\\Local\\Arduino15\\packages\\realtek\\hardware\\ameba\\2.0.6\\libraries\\WiFi\\src\\WiFiSSLClient.cpp",
+    "Include": "",
+    "Includepath": null
+  },
+  {
+    "Sourcefile": "C:\\Users\\bruce\\AppData\\Local\\Arduino15\\packages\\realtek\\hardware\\ameba\\2.0.6\\libraries\\WiFi\\src\\WiFiServer.cpp",
+    "Include": "",
+    "Includepath": null
+  },
+  {
+    "Sourcefile": "C:\\Users\\bruce\\AppData\\Local\\Arduino15\\packages\\realtek\\hardware\\ameba\\2.0.6\\libraries\\WiFi\\src\\WiFiUdp.cpp",
+    "Include": "",
+    "Includepath": null
+  },
+  {
+    "Sourcefile": "D:\\project\\ameba-arduino-samples\\libraries\\PubSubClient\\src\\PubSubClient.cpp",
+    "Include": "",
+    "Includepath": null
+  },
+  {
+    "Sourcefile": "D:\\project\\ameba-arduino-samples\\libraries\\SetRgbLed\\SetRgbLed.cpp",
+    "Include": "",
+    "Includepath": null
+  },
+  {
+    "Sourcefile": "C:\\Users\\bruce\\AppData\\Local\\Arduino15\\packages\\realtek\\hardware\\ameba\\2.0.6\\libraries\\Wire\\I2CIO.cpp",
+    "Include": "",
+    "Includepath": null
+  },
+  {
+    "Sourcefile": "C:\\Users\\bruce\\AppData\\Local\\Arduino15\\packages\\realtek\\hardware\\ameba\\2.0.6\\libraries\\Wire\\LCD.cpp",
+    "Include": "",
+    "Includepath": null
+  },
+  {
+    "Sourcefile": "C:\\Users\\bruce\\AppData\\Local\\Arduino15\\packages\\realtek\\hardware\\ameba\\2.0.6\\libraries\\Wire\\LiquidCrystal_I2C.cpp",
+    "Include": "",
+    "Includepath": null
+  },
+  {
+    "Sourcefile": "C:\\Users\\bruce\\AppData\\Local\\Arduino15\\packages\\realtek\\hardware\\ameba\\2.0.6\\libraries\\Wire\\Wire.cpp",
+    "Include": "",
+    "Includepath": null
+  },
+  {
+    "Sourcefile": "D:\\project\\ameba-arduino-samples\\libraries\\BMP180MI\\src\\BMP180I2C.cpp",
+    "Include": "",
+    "Includepath": null
+  },
+  {
+    "Sourcefile": "D:\\project\\ameba-arduino-samples\\libraries\\BMP180MI\\src\\BMP180MI.cpp",
+    "Include": "",
+    "Includepath": null
+  },
+  {
+    "Sourcefile": "D:\\project\\ameba-arduino-samples\\libraries\\BMP180MI\\src\\BMP180TwoWire.cpp",
+    "Include": "",
+    "Includepath": null
+  },
+  {
+    "Sourcefile": "C:\\Users\\bruce\\AppData\\Local\\Arduino15\\packages\\realtek\\hardware\\ameba\\2.0.6\\libraries\\GPIO\\DHT.cpp",
+    "Include": "",
+    "Includepath": null
+  },
+  {
+    "Sourcefile": "D:\\project\\ameba-arduino-samples\\libraries\\Adafruit_GFX_Library\\Adafruit_GFX.cpp",
+    "Include": "",
+    "Includepath": null
+  },
+  {
+    "Sourcefile": "D:\\project\\ameba-arduino-samples\\libraries\\Adafruit_GFX_Library\\glcdfont.c",
+    "Include": "",
+    "Includepath": null
+  },
+  {
+    "Sourcefile": "D:\\project\\ameba-arduino-samples\\libraries\\Adafruit_SSD1306\\Adafruit_SSD1306.cpp",
+    "Include": "",
+    "Includepath": null
+  },
+  {
+    "Sourcefile": "C:\\Users\\bruce\\AppData\\Local\\Arduino15\\packages\\realtek\\hardware\\ameba\\2.0.6\\libraries\\SPI\\AmebaILI9341.cpp",
+    "Include": "",
+    "Includepath": null
+  },
+  {
+    "Sourcefile": "C:\\Users\\bruce\\AppData\\Local\\Arduino15\\packages\\realtek\\hardware\\ameba\\2.0.6\\libraries\\SPI\\SPI.cpp",
+    "Include": "",
+    "Includepath": null
+  },
+  {
+    "Sourcefile": "C:\\Users\\bruce\\AppData\\Local\\Arduino15\\packages\\realtek\\hardware\\ameba\\2.0.6\\libraries\\SoftwareSerial\\Adafruit_GPS.cpp",
+    "Include": "",
+    "Includepath": null
+  },
+  {
+    "Sourcefile": "C:\\Users\\bruce\\AppData\\Local\\Arduino15\\packages\\realtek\\hardware\\ameba\\2.0.6\\libraries\\SoftwareSerial\\PMS3003.cpp",
+    "Include": "",
+    "Includepath": null
+  },
+  {
+    "Sourcefile": "C:\\Users\\bruce\\AppData\\Local\\Arduino15\\packages\\realtek\\hardware\\ameba\\2.0.6\\libraries\\SoftwareSerial\\SoftwareSerial.cpp",
+    "Include": "",
+    "Includepath": null
+  }
+]

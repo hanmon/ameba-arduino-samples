@@ -19,19 +19,19 @@
 #include <ArduinoJson.h>
 // Update these with values suitable for your network.
 
-char ssid[] = "iotlab";     // your network SSID (name)
-char pass[] = "";  // your network password
+char ssid[] = "boo";     // your network SSID (name)
+char pass[] = "@a123456";  // your network password
 int status  = WL_IDLE_STATUS;    // the Wifi radio's status
 
 
 char mqttServer[]     = "iot.cht.com.tw";
-char deviceId[]       = "14474422533";
+char deviceId[]       = "31080836893";
 char clientId[]       = "amebaClient";
-const char DEVICE_KEY[] = "";   //your api key
-char publishRawTopic[]   = "/v1/device/14474422533/rawdata";
+const char DEVICE_KEY[] = "DKMS3R2SGRE42USE5Z";   //your api key
+char publishRawTopic[]   = "/v1/device/31080836893/rawdata";
 char publishRawPayload[300] ;
 char logStr[200]; //for printing log string
-char subscribeTopic[] = "/v1/device/14474422533/sensor/rgb/rawdata";
+char subscribeTopic[] = "/v1/device/31080836893/sensor/rgb/rawdata";
 unsigned long previousRawTime = 0;     //storing previous publishing time
 int rawTimer = 10000;         //raw data timer, unit:msec
 //define ledPin
@@ -71,8 +71,8 @@ void rawTask() {
     float humid=getHumidityValue();
     float temp=getTemperatureValue();
     int pm25=getPM25();
-    char* mqttMessage=generateMQTTMessage(humid,temp,pm25);
-    //char* mqttMessage=generateMQTTMessage(humid,temp);
+    //char* mqttMessage=generateMQTTMessage(humid,temp,pm25);
+    char* mqttMessage=generateMQTTMessage(humid,temp);
     //char* mqttMessage=generateMQTTMessage(random(60,70),random(20,25),random(0,1000),random(0,1000),random(0,1000));
     strcpy(publishRawPayload,mqttMessage);
     free(mqttMessage);

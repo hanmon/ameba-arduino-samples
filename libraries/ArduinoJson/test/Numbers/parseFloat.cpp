@@ -2,10 +2,6 @@
 // Copyright Benoit Blanchon 2014-2019
 // MIT License
 
-#define ARDUINOJSON_USE_DOUBLE 0
-#define ARDUINOJSON_ENABLE_NAN 1
-#define ARDUINOJSON_ENABLE_INFINITY 1
-
 #include <ArduinoJson/Numbers/parseFloat.hpp>
 #include <catch.hpp>
 
@@ -37,6 +33,10 @@ void checkInf(const char* input, bool negative) {
 }
 
 TEST_CASE("parseFloat<float>()") {
+  SECTION("Null") {
+    check<float>(NULL, 0);
+  }
+
   SECTION("Float_Short_NoExponent") {
     check<float>("3.14", 3.14f);
     check<float>("-3.14", -3.14f);
@@ -97,13 +97,19 @@ TEST_CASE("parseFloat<float>()") {
     checkInf<float>("inf", false);
     checkInf<float>("+inf", false);
     checkInf<float>("-inf", true);
+  }
 
-    checkInf<float>("1e300", false);
-    checkInf<float>("-1e300", true);
+  SECTION("Boolean") {
+    check<float>("false", 0.0f);
+    check<float>("true", 1.0f);
   }
 }
 
 TEST_CASE("parseFloat<double>()") {
+  SECTION("Null") {
+    check<double>(NULL, 0);
+  }
+
   SECTION("Short_NoExponent") {
     check<double>("3.14", 3.14);
     check<double>("-3.14", -3.14);
@@ -162,5 +168,10 @@ TEST_CASE("parseFloat<double>()") {
   SECTION("NaN") {
     checkNaN<double>("NaN");
     checkNaN<double>("nan");
+  }
+
+  SECTION("Boolean") {
+    check<double>("false", 0.0);
+    check<double>("true", 1.0);
   }
 }

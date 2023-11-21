@@ -1,0 +1,6 @@
+{
+    "sketch": "BMP180onOLED.ino",
+    "board": "realtek:ameba:ameba_rtl8195a",
+    "port": "COM8",
+    "output": "build"
+}

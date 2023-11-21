@@ -51,12 +51,6 @@ TEST_CASE("JsonVariant::operator|()") {
     REQUIRE(result == "default");
   }
 
-  SECTION("int | uint8_t (out of range)") {
-    variant.set(666);
-    uint8_t result = variant | static_cast<uint8_t>(42);
-    REQUIRE(result == 42);
-  }
-
   SECTION("int | int") {
     variant.set(0);
     int result = variant | 666;
@@ -64,9 +58,8 @@ TEST_CASE("JsonVariant::operator|()") {
   }
 
   SECTION("double | int") {
-    // NOTE: changed the behavior to fix #981
-    variant.set(666.0);
-    int result = variant | 42;
+    variant.set(42.0);
+    int result = variant | 666;
     REQUIRE(result == 42);
   }
 

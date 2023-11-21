@@ -8,28 +8,28 @@
 
 namespace ARDUINOJSON_NAMESPACE {
 
-template <size_t desiredCapacity>
+template <size_t CAPACITY>
 class StaticJsonDocument : public JsonDocument {
-  static const size_t _capacity =
-      AddPadding<Max<1, desiredCapacity>::value>::value;
+  static const size_t ACTUAL_CAPACITY =
+      AddPadding<Max<1, CAPACITY>::value>::value;
 
  public:
-  StaticJsonDocument() : JsonDocument(_buffer, _capacity) {}
+  StaticJsonDocument() : JsonDocument(_buffer, ACTUAL_CAPACITY) {}
 
   StaticJsonDocument(const StaticJsonDocument& src)
-      : JsonDocument(_buffer, _capacity) {
+      : JsonDocument(_buffer, ACTUAL_CAPACITY) {
     set(src);
   }
 
   template <typename T>
   StaticJsonDocument(const T& src,
                      typename enable_if<IsVisitable<T>::value>::type* = 0)
-      : JsonDocument(_buffer, _capacity) {
+      : JsonDocument(_buffer, ACTUAL_CAPACITY) {
     set(src);
   }
 
   // disambiguate
-  StaticJsonDocument(VariantRef src) : JsonDocument(_buffer, _capacity) {
+  StaticJsonDocument(VariantRef src) : JsonDocument(_buffer, ACTUAL_CAPACITY) {
     set(src);
   }
 
@@ -45,7 +45,7 @@ class StaticJsonDocument : public JsonDocument {
   }
 
  private:
-  char _buffer[_capacity];
+  char _buffer[ACTUAL_CAPACITY];
 };
 
 }  // namespace ARDUINOJSON_NAMESPACE

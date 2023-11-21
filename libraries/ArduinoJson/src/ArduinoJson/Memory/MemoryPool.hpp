@@ -91,7 +91,7 @@ class MemoryPool {
     return reinterpret_cast<T*>(allocRight(sizeof(T)));
   }
 
-  void* allocRight(size_t bytes) {
+  char* allocRight(size_t bytes) {
     if (!canAlloc(bytes)) return 0;
     _right -= bytes;
     return _right;

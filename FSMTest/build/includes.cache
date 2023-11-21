@@ -1,0 +1,47 @@
+[
+  {
+    "Sourcefile": null,
+    "Include": "",
+    "Includepath": "C:\\Users\\bruce\\AppData\\Local\\Arduino15\\packages\\realtek\\hardware\\ameba\\2.0.5\\cores\\arduino"
+  },
+  {
+    "Sourcefile": null,
+    "Include": "",
+    "Includepath": "C:\\Users\\bruce\\AppData\\Local\\Arduino15\\packages\\realtek\\hardware\\ameba\\2.0.5\\variants\\rtl8195a"
+  },
+  {
+    "Sourcefile": "d:\\project\\ameba-arduino-samples\\FSMTest\\build\\sketch\\FSMTest.ino.cpp",
+    "Include": "Button.h",
+    "Includepath": "D:\\project\\ameba-arduino-samples\\libraries\\Button"
+  },
+  {
+    "Sourcefile": "d:\\project\\ameba-arduino-samples\\FSMTest\\build\\sketch\\FSMTest.ino.cpp",
+    "Include": "FiniteStateMachine.h",
+    "Includepath": "D:\\project\\ameba-arduino-samples\\libraries\\FSM"
+  },
+  {
+    "Sourcefile": "d:\\project\\ameba-arduino-samples\\FSMTest\\build\\sketch\\FSMTest.ino.cpp",
+    "Include": "SetRgbLed.h",
+    "Includepath": "D:\\project\\ameba-arduino-samples\\libraries\\SetRgbLed"
+  },
+  {
+    "Sourcefile": "d:\\project\\ameba-arduino-samples\\FSMTest\\build\\sketch\\FSMTest.ino.cpp",
+    "Include": "",
+    "Includepath": null
+  },
+  {
+    "Sourcefile": "D:\\project\\ameba-arduino-samples\\libraries\\Button\\Button.cpp",
+    "Include": "",
+    "Includepath": null
+  },
+  {
+    "Sourcefile": "D:\\project\\ameba-arduino-samples\\libraries\\FSM\\FiniteStateMachine.cpp",
+    "Include": "",
+    "Includepath": null
+  },
+  {
+    "Sourcefile": "D:\\project\\ameba-arduino-samples\\libraries\\SetRgbLed\\SetRgbLed.cpp",
+    "Include": "",
+    "Includepath": null
+  }
+]

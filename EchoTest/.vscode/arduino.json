@@ -1,6 +1,5 @@
 {
     "sketch": "EchoTest.ino",
-    "output": "build",
     "board": "realtek:ameba:ameba_rtl8195a",
-    "port": "COM8"
+    "port": "COM26"
 }

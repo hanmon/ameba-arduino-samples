@@ -1,0 +1,35 @@
+#######################################
+# Syntax Coloring Map For SetRgbLed Library
+#######################################
+
+#######################################
+# Datatypes (KEYWORD1)
+#######################################
+
+SetRgbLed	KEYWORD1
+
+#######################################
+# Methods and Functions (KEYWORD2)
+#######################################
+
+SetRgbLed	KEYWORD2
+setColor	KEYWORD2
+showSevenColors	KEYWORD2
+
+#######################################
+# Instances (KEYWORD2)
+#######################################
+
+#######################################
+# Constants (LITERAL1)
+#######################################
+
+RED	LITERAL1
+ORANGE	LITERAL1
+YELLOW	LITERAL1
+GREEN	LITERAL1
+BLUE	LITERAL1
+INDIGO	LITERAL1
+PURPLE	LITERAL1
+COMMON_ANODE	LITERAL1
+COMMON_CATHODE	LITERAL1

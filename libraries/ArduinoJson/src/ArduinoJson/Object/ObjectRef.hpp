@@ -18,13 +18,27 @@ template <typename TData>
 class ObjectRefBase {
  public:
   operator VariantConstRef() const {
-    const void* data = _data;  // prevent warning cast-align
-    return VariantConstRef(reinterpret_cast<const VariantData*>(data));
+    return VariantConstRef(reinterpret_cast<const VariantData*>(_data));
   }
 
   template <typename Visitor>
   FORCE_INLINE void accept(Visitor& visitor) const {
     objectAccept(_data, visitor);
+  }
+
+  // containsKey(const std::string&) const
+  // containsKey(const String&) const
+  template <typename TString>
+  FORCE_INLINE bool containsKey(const TString& key) const {
+    return objectContainsKey(_data, adaptString(key));
+  }
+
+  // containsKey(char*) const
+  // containsKey(const char*) const
+  // containsKey(const __FlashStringHelper*) const
+  template <typename TChar>
+  FORCE_INLINE bool containsKey(TChar* key) const {
+    return objectContainsKey(_data, adaptString(key));
   }
 
   FORCE_INLINE bool isNull() const {
@@ -66,21 +80,6 @@ class ObjectConstRef : public ObjectRefBase<const CollectionData>,
 
   FORCE_INLINE iterator end() const {
     return iterator();
-  }
-
-  // containsKey(const std::string&) const
-  // containsKey(const String&) const
-  template <typename TString>
-  FORCE_INLINE bool containsKey(const TString& key) const {
-    return !getMember(key).isUndefined();
-  }
-
-  // containsKey(char*) const
-  // containsKey(const char*) const
-  // containsKey(const __FlashStringHelper*) const
-  template <typename TChar>
-  FORCE_INLINE bool containsKey(TChar* key) const {
-    return !getMember(key).isUndefined();
   }
 
   // getMember(const std::string&) const
@@ -141,8 +140,7 @@ class ObjectRef : public ObjectRefBase<CollectionData>,
       : base_type(data), _pool(buf) {}
 
   operator VariantRef() const {
-    void* data = _data;  // prevent warning cast-align
-    return VariantRef(_pool, reinterpret_cast<VariantData*>(data));
+    return VariantRef(_pool, reinterpret_cast<VariantData*>(_data));
   }
 
   operator ObjectConstRef() const {

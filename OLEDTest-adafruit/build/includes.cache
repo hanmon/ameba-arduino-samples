@@ -1,0 +1,82 @@
+[
+  {
+    "Sourcefile": null,
+    "Include": "",
+    "Includepath": "C:\\Users\\bruce\\AppData\\Local\\Arduino15\\packages\\realtek\\hardware\\ameba\\2.0.5\\cores\\arduino"
+  },
+  {
+    "Sourcefile": null,
+    "Include": "",
+    "Includepath": "C:\\Users\\bruce\\AppData\\Local\\Arduino15\\packages\\realtek\\hardware\\ameba\\2.0.5\\variants\\rtl8195a"
+  },
+  {
+    "Sourcefile": "d:\\project\\ameba-arduino-samples\\OLEDTest-adafruit\\build\\sketch\\OLEDTest-adafruit.ino.cpp",
+    "Include": "Wire.h",
+    "Includepath": "C:\\Users\\bruce\\AppData\\Local\\Arduino15\\packages\\realtek\\hardware\\ameba\\2.0.5\\libraries\\Wire"
+  },
+  {
+    "Sourcefile": "d:\\project\\ameba-arduino-samples\\OLEDTest-adafruit\\build\\sketch\\OLEDTest-adafruit.ino.cpp",
+    "Include": "Adafruit_GFX.h",
+    "Includepath": "D:\\project\\ameba-arduino-samples\\libraries\\Adafruit_GFX_Library"
+  },
+  {
+    "Sourcefile": "d:\\project\\ameba-arduino-samples\\OLEDTest-adafruit\\build\\sketch\\OLEDTest-adafruit.ino.cpp",
+    "Include": "Adafruit_SSD1306.h",
+    "Includepath": "D:\\project\\ameba-arduino-samples\\libraries\\Adafruit_SSD1306"
+  },
+  {
+    "Sourcefile": "d:\\project\\ameba-arduino-samples\\OLEDTest-adafruit\\build\\sketch\\OLEDTest-adafruit.ino.cpp",
+    "Include": "SPI.h",
+    "Includepath": "C:\\Users\\bruce\\AppData\\Local\\Arduino15\\packages\\realtek\\hardware\\ameba\\2.0.5\\libraries\\SPI"
+  },
+  {
+    "Sourcefile": "d:\\project\\ameba-arduino-samples\\OLEDTest-adafruit\\build\\sketch\\OLEDTest-adafruit.ino.cpp",
+    "Include": "",
+    "Includepath": null
+  },
+  {
+    "Sourcefile": "C:\\Users\\bruce\\AppData\\Local\\Arduino15\\packages\\realtek\\hardware\\ameba\\2.0.5\\libraries\\Wire\\I2CIO.cpp",
+    "Include": "",
+    "Includepath": null
+  },
+  {
+    "Sourcefile": "C:\\Users\\bruce\\AppData\\Local\\Arduino15\\packages\\realtek\\hardware\\ameba\\2.0.5\\libraries\\Wire\\LCD.cpp",
+    "Include": "",
+    "Includepath": null
+  },
+  {
+    "Sourcefile": "C:\\Users\\bruce\\AppData\\Local\\Arduino15\\packages\\realtek\\hardware\\ameba\\2.0.5\\libraries\\Wire\\LiquidCrystal_I2C.cpp",
+    "Include": "",
+    "Includepath": null
+  },
+  {
+    "Sourcefile": "C:\\Users\\bruce\\AppData\\Local\\Arduino15\\packages\\realtek\\hardware\\ameba\\2.0.5\\libraries\\Wire\\Wire.cpp",
+    "Include": "",
+    "Includepath": null
+  },
+  {
+    "Sourcefile": "D:\\project\\ameba-arduino-samples\\libraries\\Adafruit_GFX_Library\\Adafruit_GFX.cpp",
+    "Include": "",
+    "Includepath": null
+  },
+  {
+    "Sourcefile": "D:\\project\\ameba-arduino-samples\\libraries\\Adafruit_GFX_Library\\glcdfont.c",
+    "Include": "",
+    "Includepath": null
+  },
+  {
+    "Sourcefile": "D:\\project\\ameba-arduino-samples\\libraries\\Adafruit_SSD1306\\Adafruit_SSD1306.cpp",
+    "Include": "",
+    "Includepath": null
+  },
+  {
+    "Sourcefile": "C:\\Users\\bruce\\AppData\\Local\\Arduino15\\packages\\realtek\\hardware\\ameba\\2.0.5\\libraries\\SPI\\AmebaILI9341.cpp",
+    "Include": "",
+    "Includepath": null
+  },
+  {
+    "Sourcefile": "C:\\Users\\bruce\\AppData\\Local\\Arduino15\\packages\\realtek\\hardware\\ameba\\2.0.5\\libraries\\SPI\\SPI.cpp",
+    "Include": "",
+    "Includepath": null
+  }
+]

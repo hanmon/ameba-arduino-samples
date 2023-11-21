@@ -52,9 +52,8 @@ inline bool variantIsBoolean(const VariantData *var) {
   return var && var->isBoolean();
 }
 
-template <typename T>
 inline bool variantIsInteger(const VariantData *var) {
-  return var && var->isInteger<T>();
+  return var && var->isInteger();
 }
 
 inline bool variantIsFloat(const VariantData *var) {

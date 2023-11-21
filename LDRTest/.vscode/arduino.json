@@ -1,5 +1,6 @@
 {
-    "board": "realtek:ameba:ameba_rtl8195a",
     "sketch": "LDRTest.ino",
-    "port": "/dev/ttyACM0"
+    "board": "realtek:ameba:ameba_rtl8195a",
+    "output": "build",
+    "port": "COM8"
 }

@@ -1,0 +1,7 @@
+#line 1 "D:\\project\\ameba-arduino-samples\\EchoTest\\.vscode\\arduino.json"
+{
+    "sketch": "EchoTest.ino",
+    "output": "build",
+    "board": "realtek:ameba:ameba_rtl8195a",
+    "port": "COM8"
+}

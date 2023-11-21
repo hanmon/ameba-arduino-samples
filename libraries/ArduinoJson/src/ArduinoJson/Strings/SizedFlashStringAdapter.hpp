@@ -11,15 +11,10 @@ class SizedFlashStringAdapter {
   SizedFlashStringAdapter(const __FlashStringHelper* str, size_t sz)
       : _str(str), _size(sz) {}
 
-  int8_t compare(const char* other) const {
-    if (!other && !_str) return 0;
-    if (!_str) return -1;
-    if (!other) return 1;
-    return -strncmp_P(other, reinterpret_cast<const char*>(_str), _size);
-  }
-
   bool equals(const char* expected) const {
-    return compare(expected) == 0;
+    const char* actual = reinterpret_cast<const char*>(_str);
+    if (!actual || !expected) return actual == expected;
+    return strncmp_P(expected, actual, _size) == 0;
   }
 
   bool isNull() const {
@@ -29,7 +24,7 @@ class SizedFlashStringAdapter {
   char* save(MemoryPool* pool) const {
     if (!_str) return NULL;
     char* dup = pool->allocFrozenString(_size);
-    if (dup) memcpy_P(dup, (const char*)_str, _size);
+    if (!dup) memcpy_P(dup, (const char*)_str, _size);
     return dup;
   }
 

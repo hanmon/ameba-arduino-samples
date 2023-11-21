@@ -4,8 +4,6 @@
 //
 // This example shows how to deserialize a MessagePack document with
 // ArduinoJson.
-//
-// https://arduinojson.org/v6/example/msgpack-parser/
 
 #include <ArduinoJson.h>
 
@@ -73,3 +71,5 @@ void setup() {
 void loop() {
   // not used in this example
 }
+
+// Visit https://arduinojson.org/v6/example/msgpack-parser/ for more.

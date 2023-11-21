@@ -161,7 +161,7 @@ TEST_CASE("JsonObject::operator[]") {
     obj[null] = 666;
 
     REQUIRE(obj.size() == 1);
-    REQUIRE(obj[null] == null);
+    REQUIRE(obj[null] == 0);
   }
 
   SECTION("obj[key].to<JsonArray>()") {

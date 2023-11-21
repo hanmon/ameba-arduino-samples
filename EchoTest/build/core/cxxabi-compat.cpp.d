@@ -1,2 +1,2 @@
-d:\project\ameba-arduino-samples\EchoTest\build\core\cxxabi-compat.cpp.o: \
- C:\Users\bruce\AppData\Local\Arduino15\packages\realtek\hardware\ameba\2.0.5\cores\arduino\cxxabi-compat.cpp
+D:\project\ameba-arduino-samples\EchoTest\build\core\cxxabi-compat.cpp.o: \
+ C:\Users\bruce\AppData\Local\Arduino15\packages\realtek\hardware\ameba\2.0.6\cores\arduino\cxxabi-compat.cpp

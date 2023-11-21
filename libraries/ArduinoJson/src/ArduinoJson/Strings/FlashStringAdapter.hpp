@@ -10,15 +10,10 @@ class FlashStringAdapter {
  public:
   FlashStringAdapter(const __FlashStringHelper* str) : _str(str) {}
 
-  int8_t compare(const char* other) const {
-    if (!other && !_str) return 0;
-    if (!_str) return -1;
-    if (!other) return 1;
-    return -strcmp_P(other, reinterpret_cast<const char*>(_str));
-  }
-
   bool equals(const char* expected) const {
-    return compare(expected) == 0;
+    const char* actual = reinterpret_cast<const char*>(_str);
+    if (!actual || !expected) return actual == expected;
+    return strcmp_P(expected, actual) == 0;
   }
 
   bool isNull() const {

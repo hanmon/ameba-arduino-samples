@@ -1,4 +1,3 @@
-//Generating(Serializing) MQTT Payload function for uploading to CHT IoT Platform
 char* generateJsonPayload(char* sensorId, int* values, int valuesNum) {
   //Calculating needed capacity for preparing MQTT Payload(JSON)
   //Using tool provided by ArduinoJSON,at https://arduinojson.org/v6/assistant/

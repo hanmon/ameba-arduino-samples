@@ -12,117 +12,183 @@
   achieve the same result without blocking the main loop.
 
 */
-#define ARDUINOJSON_ENABLE_PROGMEM 0   //Defining for ameba arduino specially 
-#define DEBUG    //Uncomment this when printing degugging message is necessary
+#define ARDUINOJSON_ENABLE_PROGMEM 0 // Defining for ameba arduino specially
+#define DEBUG                        // Uncomment this when printing degugging message is necessary
 #include <WiFi.h>
 #include <PubSubClient.h>
 #include <ArduinoJson.h>
+#include "SetRgbLed.h"
+#include "CHT_logo.h"
+// include headers for BMP180
+#include <Wire.h>
+#include <BMP180I2C.h>
+SetRgbLed rgb(COMMON_ANODE, 9, 10, 11);
 // Update these with values suitable for your network.
+// create an BMP180 object using the I2C interface
+#define I2C_ADDRESS 0x77
+BMP180I2C bmp180(I2C_ADDRESS);
 
-char ssid[] = "boo";     // your network SSID (name)
-char pass[] = "";  // your network password
-int status  = WL_IDLE_STATUS;    // the Wifi radio's status
+char ssid[] = "AIoT_1";    // your network SSID (name)
+char pass[] = ""; // your network password
+int status = WL_IDLE_STATUS; // the Wifi radio's status
 
+char mqttServer[] = "iot.cht.com.tw";
+char deviceId[] = "31080836893";
+char clientId[] = "amebaClient";
+const char DEVICE_KEY[] = ""; // your api key
+char publishRawTopic[] = "/v1/device/31080836893/rawdata";
+char publishRawPayload[400];
+char displayRow0[30], displayRow1[30], displayRow2[30];
+char logStr[200]; // for printing log string
+char subscribeTopic[] = "/v1/device/31080836893/sensor/rgb/rawdata";
+unsigned long previousRawTime = 0; // storing previous publishing time
+int rawTimer = 500;               // raw data timer, unit:msec
+// define ledPin
+const int ledPin = 13;
 
-char mqttServer[]     = "iot.cht.com.tw";
-char deviceId[]       = "13650924095";
-char clientId[]       = "amebaClient";
-const char DEVICE_KEY[] = "";   //your api key
-char publishRawTopic[]   = "/v1/device/13650924095/rawdata";
-char publishRawPayload[400] ;
-char displayRow0[30],displayRow1[30],displayRow2[30];
-char logStr[200]; //for printing log string
-char subscribeTopic[] = "/v1/device/13650924095/sensor/rgb/rawdata";
-unsigned long previousRawTime = 0;     //storing previous publishing time
-int rawTimer = 5000;         //raw data timer, unit:msec
-//define ledPin
-const int ledPin=13;
-
-
-//instantiate PubSubCluent object
+// instantiate PubSubCluent object
 WiFiClient wifiClient;
 PubSubClient client(wifiClient);
 
-void callback(char* topic, byte* payload, unsigned int length) {
-  //Parsing JSON Object and print to serial monitor
+void callback(char *topic, byte *payload, unsigned int length)
+{
+  // Parsing JSON Object and print to serial monitor
 
   Serial.println(F("Message arrived:"));
-  Serial.println((char*)payload);
-  StaticJsonBuffer<200> jsonBuffer;
-  JsonObject& root=jsonBuffer.parseObject((char*)payload);
+  Serial.println((char *)payload);
+  StaticJsonDocument<256> doc;
+  auto error = deserializeJson(doc, (char*)payload);
   // Test if parsing succeeds.
-  if (!root.success()) {
-    Serial.println("parseObject() failed");
+  if (error) {
+    Serial.print(F("deserializeJson() failed: "));
+    Serial.println(error.c_str());
     return;
   }
-  const char* id=root["id"];
-  const char* time=root["time"];
-  unsigned long value=root["value"][0];
-  //Serial.println("Parsed JSON Object id:"+String(id)+",time:"+String(time)+",value:"+String(value));
-  sprintf(logStr,"Parsed JSON Object id:%s, time:%s, value:%d",id,time,value);
+  //Parsing(Deserializing) values in JSON object
+  const char* id = doc["id"];
+  const char* time = doc["time"];
+  unsigned long value = doc["value"][0];
+  //Printing the values in MQTT Message
+  sprintf(logStr, "Parsed JSON Object id:%s, time:%s, value:%d", id, time, value);
   Serial.println(logStr);
-  //digitalWrite(ledPin,(*value=='1'?HIGH:LOW));  //Switch led on or off according to value
-  //unsigned long color=String(value).toInt();
-  
+  rgb.setColor((int)value);
+  // digitalWrite(ledPin,(*value=='1'?HIGH:LOW));  //Switch led on or off according to value
+  // unsigned long color=String(value).toInt();
 }
 
-void rawTask() {
-  if ((millis() - previousRawTime) > rawTimer) {
+void rawTask()
+{
+  if ((millis() - previousRawTime) > rawTimer)
+  {
     previousRawTime = millis();
-    //Measuring from real sensors
-    float humid=random(60,70);
-    float temp=random(20,25);
-    int pm10=random(0,1000);
-    int pm25=random(0,1000);
-    int pm100=random(0,1000);
-    //humid=getHumidityValue();
-    //temp=getTemperatureValue();
-    int* pmValues=getPMValues();
-    pm10=pmValues[0];
-    pm25=pmValues[1];
-    pm100=pmValues[2];
-    //Generating random values for testing
-    //char* mqttMessage=generateMQTTMessage(humid,temp,pm25);
-    //char* mqttMessage=generateMQTTMessage(humid,temp);
-    //generating testing value for publishing
+    // Measuring from real sensors
+    float humid = random(60, 70);
+    float temp = random(20, 25);
+    int pm10 = random(0, 1000);
+    int pm25 = random(0, 1000);
+    int pm100 = random(0, 1000);
+    // humid=getHumidityValue();
+    // temp=getTemperatureValue();
+    // int* pmValues=getPMValues();
+    // pm10=pmValues[0];
+    // pm25=pmValues[1];
+    // pm100=pmValues[2];
+    // get LDR Value
+    int ldrValue = analogRead(A0);
+    if (temp > 30)
+    {
+      rgb.setColor(RED);
+    }
+    else if (temp <= 30)
+    {
+      rgb.setColor(GREEN);
+    }
+    // get BMP180 Value
+    //  start a temperature measurement
+    // if (!bmp180.measureTemperature())
+    // {
+    //   Serial.println("could not start temperature measurement, is a measurement already running?");
+    //   return;
+    // }
+
+    // wait for the measurement to finish. proceed as soon as hasValue() returned true.
+    // do
+    // {
+    //   delay(100);
+    // } while (!bmp180.hasValue());
+
+    // Serial.print("Temperature: ");
+    // float temperature = bmp180.getTemperature();
+    // Serial.print(temperature, 1);
+    // Serial.println(" degC");
+
+    // start a pressure measurement. pressure measurements depend on temperature measurement, you should only start a pressure
+    // measurement immediately after a temperature measurement.
+    // if (!bmp180.measurePressure())
+    // {
+    //   Serial.println("could not start perssure measurement, is a measurement already running?");
+    //   return;
+    // }
+
+    // wait for the measurement to finish. proceed as soon as hasValue() returned true.
+    // do
+    // {
+    //   delay(100);
+    // } while (!bmp180.hasValue());
+
+    // Serial.print("Pressure: ");
+    // float pressure = bmp180.getPressure();
+    // Serial.print(pressure);
+    // Serial.println(" Pa");
+
+    // Generating random values for testing
+    // char* mqttMessage=generateMQTTMessage(humid,temp,pm25);
+    // char* mqttMessage=generateMQTTMessage(humid,temp);
+    // generating testing value for publishing
     char* mqttMessage=generateMQTTMessage(humid,temp,pm10,pm25,pm100);
-    strcpy(publishRawPayload,mqttMessage);
-    free(mqttMessage);
-    //Show humid and temp on LCD
-    //clearLCD();
-//    char* lcdStrRow0=(char*)malloc(20);
-//    char* lcdStrRow1=(char*)malloc(20);
-    //clearOLED();
-    serCursorToBegin();
-    printOnOLED("");
-    printOnOLED("");
-    printOnOLED("");
-    serCursorToBegin();
-    sprintf(displayRow0,"PM2.5:%d ug/m3",pm25);
-    sprintf(displayRow1,"Temp:%2.2f%cC",temp,0xF7);
-    sprintf(displayRow2,"Humid:%2.2f%%",humid);
-    printOnOLED(displayRow0);
-    printOnOLED(displayRow1);
-    printOnOLED(displayRow2);
-    Serial.print(F("publishRawPayload:"));
-    Serial.println(publishRawPayload);
-    int result = client.publish(publishRawTopic, publishRawPayload);
+    // char *mqttMessage = generateMQTTMessage(temperature, pressure, ldrValue);
+    // char* mqttMessage=generateMQTTMessage(humid,temp);
+    // strcpy(publishRawPayload, mqttMessage);
+
+    // free(mqttMessage);
+    // Show humid and temp on LCD
+    // clearLCD();
+    //    char* lcdStrRow0=(char*)malloc(20);
+    //    char* lcdStrRow1=(char*)malloc(20);
+    // clearOLED();
+    // sprintf(displayRow0, "Temp:%2.2f%cC", temp, 0xF7);
+    // printOnOLED(displayRow0);
+    // memset(displayRow0, 0, 30);
+    // sprintf(displayRow0, "Humid:%2.2f%%", humid);
+    // printOnOLED(displayRow0);
+    // memset(displayRow0, 0, 30);
+    // printOnOLED(displayRow0);
+    // printOnOLED(displayRow1);
+    // printOnOLED(displayRow2);
+    // Serial.print(F("publishRawPayload:"));
+    // Serial.println(mqttMessage);
+    int result = client.publish(publishRawTopic, mqttMessage);
     result == 1 ? Serial.println(F("MQTT publish succeeded")) : Serial.println(F("MQTT publish failed"));
   }
 }
 
-void reconnect() {
+void reconnect()
+{
   // Loop until we're reconnected
-  while (!client.connected()) {
+  while (!client.connected())
+  {
     Serial.print(F("Attempting MQTT connection..."));
     // Attempt to connect
-    if (client.connect(clientId, DEVICE_KEY, DEVICE_KEY)) {
+    if (client.connect(clientId, DEVICE_KEY, DEVICE_KEY))
+    {
       Serial.println(F("connected"));
       // Once connected, publish an announcement...
-      //client.publish(publishRawTopic, publishRawPayload);
+      // client.publish(publishRawTopic, publishRawPayload);
       // ... and resubscribe
       client.subscribe(subscribeTopic);
-    } else {
+    }
+    else
+    {
       Serial.print(F("failed, rc="));
       Serial.print(client.state());
       Serial.println(F(" try again in 5 seconds"));
@@ -134,9 +200,14 @@ void reconnect() {
 
 void setup()
 {
+  // mySerial.begin(9600);
   Serial.begin(38400);
-
-  while (status != WL_CONNECTED) {
+  // initLCD();
+  initOLED();
+  // Draw CHT logo
+  drawBitmap();
+  while (status != WL_CONNECTED)
+  {
     Serial.println("");
     Serial.print(F("Attempting to connect to SSID: "));
     Serial.println(ssid);
@@ -154,19 +225,31 @@ void setup()
   delay(1500);
   // initialize digital pin 13 as an output.
   pinMode(ledPin, OUTPUT);
-  //init DHT sensor
+  // init DHT sensor
   initDHTSensor();
-  //init LCD display
-  //initLCD();
-  initOLED();
-  //init PM2.5 Sensor
+  // init LCD display
+
+  // init PM2.5 Sensor
   clearOLED();
   initUART2();
+  // initialize BMP180
+  // Wire.begin();
+  // if (!bmp180.begin())
+  // {
+  //   Serial.println("begin() failed. check your BMP180 Interface and I2C Address.");
+  //   while (1)
+  //     ;
+  // }
+  // reset sensor to default parameters.
+  // bmp180.resetToDefaults();
+  // // enable ultra high resolution mode for pressure measurements
+  // bmp180.setSamplingMode(BMP180MI::MODE_UHR);
 }
 
 void loop()
 {
-  if (!client.connected()) {
+  if (!client.connected())
+  {
     reconnect();
   }
   client.loop();

@@ -6,7 +6,8 @@
 
 #include "../Deserialization/deserialize.hpp"
 #include "../Memory/MemoryPool.hpp"
-#include "../Numbers/parseNumber.hpp"
+#include "../Numbers/isFloat.hpp"
+#include "../Numbers/isInteger.hpp"
 #include "../Polyfills/type_traits.hpp"
 #include "../Variant/VariantData.hpp"
 #include "EscapeSequence.hpp"
@@ -28,14 +29,19 @@ class JsonDeserializer {
         _nestingLimit(nestingLimit),
         _loaded(false) {}
   DeserializationError parse(VariantData &variant) {
-    DeserializationError err = parseVariant(variant);
+    DeserializationError err = skipSpacesAndComments();
+    if (err) return err;
 
-    if (!err && _current != 0 && !variant.isEnclosed()) {
-      // We don't detect trailing characters earlier, so we need to check now
-      err = DeserializationError::InvalidInput;
+    switch (current()) {
+      case '[':
+        return parseArray(variant.toArray());
+
+      case '{':
+        return parseObject(variant.toObject());
+
+      default:
+        return parseValue(variant);
     }
-
-    return err;
   }
 
  private:
@@ -43,8 +49,10 @@ class JsonDeserializer {
 
   char current() {
     if (!_loaded) {
-      int c = _reader.read();
-      _current = static_cast<char>(c > 0 ? c : 0);
+      if (_reader.ended())
+        _current = 0;
+      else
+        _current = _reader.read();
       _loaded = true;
     }
     return _current;
@@ -58,26 +66,6 @@ class JsonDeserializer {
     if (current() != charToSkip) return false;
     move();
     return true;
-  }
-
-  DeserializationError parseVariant(VariantData &variant) {
-    DeserializationError err = skipSpacesAndComments();
-    if (err) return err;
-
-    switch (current()) {
-      case '[':
-        return parseArray(variant.toArray());
-
-      case '{':
-        return parseObject(variant.toObject());
-
-      case '\"':
-      case '\'':
-        return parseStringValue(variant);
-
-      default:
-        return parseNumericValue(variant);
-    }
   }
 
   DeserializationError parseArray(CollectionData &array) {
@@ -101,7 +89,7 @@ class JsonDeserializer {
 
       // 1 - Parse value
       _nestingLimit--;
-      err = parseVariant(*value);
+      err = parse(*value);
       _nestingLimit++;
       if (err) return err;
 
@@ -147,7 +135,7 @@ class JsonDeserializer {
 
       // Parse value
       _nestingLimit--;
-      err = parseVariant(*slot->data());
+      err = parse(*slot->data());
       _nestingLimit++;
       if (err) return err;
 
@@ -162,6 +150,14 @@ class JsonDeserializer {
       // Skip spaces
       err = skipSpacesAndComments();
       if (err) return err;
+    }
+  }
+
+  DeserializationError parseValue(VariantData &variant) {
+    if (isQuote(current())) {
+      return parseStringValue(variant);
+    } else {
+      return parseNumericValue(variant);
     }
   }
 
@@ -255,6 +251,14 @@ class JsonDeserializer {
     }
     buffer[n] = 0;
 
+    if (isInteger(buffer)) {
+      result.setInteger(parseInteger<Integer>(buffer));
+      return DeserializationError::Ok;
+    }
+    if (isFloat(buffer)) {
+      result.setFloat(parseFloat<Float>(buffer));
+      return DeserializationError::Ok;
+    }
     c = buffer[0];
     if (c == 't') {  // true
       result.setBoolean(true);
@@ -271,23 +275,6 @@ class JsonDeserializer {
       return n == 4 ? DeserializationError::Ok
                     : DeserializationError::IncompleteInput;
     }
-
-    ParsedNumber<Float, UInt> num = parseNumber<Float, UInt>(buffer);
-
-    switch (num.type()) {
-      case VALUE_IS_NEGATIVE_INTEGER:
-        result.setNegativeInteger(num.uintValue);
-        return DeserializationError::Ok;
-
-      case VALUE_IS_POSITIVE_INTEGER:
-        result.setPositiveInteger(num.uintValue);
-        return DeserializationError::Ok;
-
-      case VALUE_IS_FLOAT:
-        result.setFloat(num.floatValue);
-        return DeserializationError::Ok;
-    }
-
     return DeserializationError::InvalidInput;
   }
 
@@ -319,7 +306,7 @@ class JsonDeserializer {
 
   static inline uint8_t decodeHex(char c) {
     if (c < 'A') return uint8_t(c - '0');
-    c = char(c & ~0x20);  // uppercase
+    c &= ~0x20;  // uppercase
     return uint8_t(c - 'A' + 10);
   }
 

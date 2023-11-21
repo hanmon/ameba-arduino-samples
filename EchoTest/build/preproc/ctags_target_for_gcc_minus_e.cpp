@@ -1,4 +1,4 @@
-# 1 "d:\\project\\ameba-arduino-samples\\EchoTest\\EchoTest.ino"
+# 1 "D:\\project\\ameba-arduino-samples\\EchoTest\\EchoTest.ino"
 void setup()
 {
     // Initialize serial and wait for port to open:

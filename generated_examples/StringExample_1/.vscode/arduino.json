@@ -1,0 +1,5 @@
+{
+    "sketch": "StringExample.ino",
+    "port": "COM4",
+    "board": "realtek:ameba:ameba_rtl8195a"
+}

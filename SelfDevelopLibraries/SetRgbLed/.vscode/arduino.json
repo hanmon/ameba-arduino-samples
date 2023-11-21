@@ -1,0 +1,4 @@
+{
+    "board": "realtek:ameba:ameba_rtl8195a",
+    "sketch": "examples\\SetRgbLedLibraryTest\\SetRgbLedLibraryTest.ino"
+}

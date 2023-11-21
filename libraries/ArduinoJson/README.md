@@ -2,7 +2,7 @@
 
 ---
 
-[![arduino-library-badge](https://www.ardu-badge.com/badge/ArduinoJson.svg?version=6.11.3)](https://www.ardu-badge.com/ArduinoJson/6.11.3)
+[![arduino-library-badge](https://www.ardu-badge.com/badge/ArduinoJson.svg?version=6.9.0)](https://www.ardu-badge.com/ArduinoJson/6.9.0)
 [![Build Status](https://ci.appveyor.com/api/projects/status/m7s53wav1l0abssg/branch/6.x?svg=true)](https://ci.appveyor.com/project/bblanchon/arduinojson/branch/6.x)
 [![Build Status](https://travis-ci.org/bblanchon/ArduinoJson.svg?branch=6.x)](https://travis-ci.org/bblanchon/ArduinoJson)
 [![Coverage Status](https://coveralls.io/repos/github/bblanchon/ArduinoJson/badge.svg?branch=6.x)](https://coveralls.io/github/bblanchon/ArduinoJson?branch=6.x)
@@ -67,10 +67,11 @@ char json[] = "{\"sensor\":\"gps\",\"time\":1351824120,\"data\":[48.756080,2.302
 DynamicJsonDocument doc(1024);
 deserializeJson(doc, json);
 
-const char* sensor = doc["sensor"];
-long time          = doc["time"];
-double latitude    = doc["data"][0];
-double longitude   = doc["data"][1];
+JsonObjectRef root = doc.as<JsonObject>();
+const char* sensor = root["sensor"];
+long time          = root["time"];
+double latitude    = root["data"][0];
+double longitude   = root["data"][1];
 ```
 
 See the [tutorial on arduinojson.org](https://arduinojson.org/doc/decoding/?utm_source=github&utm_medium=readme)
@@ -82,10 +83,11 @@ Here is a program that generates a JSON document with ArduinoJson:
 ```c++
 DynamicJsonDocument doc(1024);
 
-doc["sensor"] = "gps";
-doc["time"]   = 1351824120;
+JsonObject root = doc.to<JsonObject>();
+root["sensor"] = "gps";
+root["time"] = 1351824120;
 
-JsonArray data = doc.createNestedArray("data");
+JsonArray data = root.createNestedArray("data");
 data.add(48.756080);
 data.add(2.302038);
 

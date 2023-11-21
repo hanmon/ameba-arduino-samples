@@ -1,7 +1,7 @@
 //Generating a complete three value MQTT Message for uploading to CHT IoT Platform
 char* generateMqttRequestBody(char* sensorId, int* values,int valuesNum) {
   const int BUFFER_SIZE = JSON_OBJECT_SIZE(2) + JSON_ARRAY_SIZE(valuesNum);
-  StaticJsonBuffer<BUFFER_SIZE> jsonBuffer;
+  StaticJsonBuffer<400> jsonBuffer;
   
   JsonArray& arrayRoot = jsonBuffer.createArray();
  

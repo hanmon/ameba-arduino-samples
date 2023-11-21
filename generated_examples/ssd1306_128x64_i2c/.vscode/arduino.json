@@ -1,0 +1,5 @@
+{
+    "sketch": "ssd1306_128x64_i2c.ino",
+    "port": "COM8",
+    "board": "realtek:ameba:ameba_rtl8195a"
+}

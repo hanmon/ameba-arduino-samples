@@ -12,10 +12,8 @@
 
 #if __cplusplus >= 201103L
 #define ARDUINOJSON_HAS_LONG_LONG 1
-#define ARDUINOJSON_HAS_NULLPTR 1
 #else
 #define ARDUINOJSON_HAS_LONG_LONG 0
-#define ARDUINOJSON_HAS_NULLPTR 0
 #endif
 
 // Small or big machine?
@@ -90,36 +88,26 @@
 
 #ifdef ARDUINO
 
-// Enable support for Arduino's String class
+// Enable support for Arduino String
 #ifndef ARDUINOJSON_ENABLE_ARDUINO_STRING
 #define ARDUINOJSON_ENABLE_ARDUINO_STRING 1
 #endif
 
-// Enable support for Arduino's Stream class
+// Enable support for Arduino Stream
 #ifndef ARDUINOJSON_ENABLE_ARDUINO_STREAM
 #define ARDUINOJSON_ENABLE_ARDUINO_STREAM 1
 #endif
 
-// Enable support for Arduino's Print class
-#ifndef ARDUINOJSON_ENABLE_ARDUINO_PRINT
-#define ARDUINOJSON_ENABLE_ARDUINO_PRINT 1
-#endif
-
 #else  // ARDUINO
 
-// Enable support for Arduino's String class
+// Disable support for Arduino String
 #ifndef ARDUINOJSON_ENABLE_ARDUINO_STRING
 #define ARDUINOJSON_ENABLE_ARDUINO_STRING 0
 #endif
 
-// Enable support for Arduino's Stream class
+// Disable support for Arduino Stream
 #ifndef ARDUINOJSON_ENABLE_ARDUINO_STREAM
 #define ARDUINOJSON_ENABLE_ARDUINO_STREAM 0
-#endif
-
-// Enable support for Arduino's Print class
-#ifndef ARDUINOJSON_ENABLE_ARDUINO_PRINT
-#define ARDUINOJSON_ENABLE_ARDUINO_PRINT 0
 #endif
 
 #endif  // ARDUINO
@@ -137,16 +125,6 @@
 #define ARDUINOJSON_DECODE_UNICODE 0
 #endif
 
-// Support NaN in JSON
-#ifndef ARDUINOJSON_ENABLE_NAN
-#define ARDUINOJSON_ENABLE_NAN 0
-#endif
-
-// Support Infinity in JSON
-#ifndef ARDUINOJSON_ENABLE_INFINITY
-#define ARDUINOJSON_ENABLE_INFINITY 0
-#endif
-
 // Control the exponentiation threshold for big numbers
 // CAUTION: cannot be more that 1e9 !!!!
 #ifndef ARDUINOJSON_POSITIVE_EXPONENTIATION_THRESHOLD
@@ -161,7 +139,7 @@
 #ifndef ARDUINOJSON_LITTLE_ENDIAN
 #if defined(_MSC_VER) ||                                                      \
     (defined(__BYTE_ORDER__) && __BYTE_ORDER__ == __ORDER_LITTLE_ENDIAN__) || \
-    defined(__LITTLE_ENDIAN__) || defined(__i386) || defined(__x86_64)
+    (defined(__LITTLE_ENDIAN__))
 #define ARDUINOJSON_LITTLE_ENDIAN 1
 #else
 #define ARDUINOJSON_LITTLE_ENDIAN 0

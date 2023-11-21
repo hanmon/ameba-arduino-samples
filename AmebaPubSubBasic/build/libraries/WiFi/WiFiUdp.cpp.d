@@ -1,0 +1,30 @@
+d:\project\ameba-arduino-samples\AmebaPubSubBasic\build\libraries\WiFi\WiFiUdp.cpp.o: \
+ C:\Users\bruce\AppData\Local\Arduino15\packages\realtek\hardware\ameba\2.0.5\libraries\WiFi\src\WiFiUdp.cpp \
+ C:\Users\bruce\AppData\Local\Arduino15\packages\realtek\hardware\ameba\2.0.5\cores\arduino/server_drv.h \
+ C:\Users\bruce\AppData\Local\Arduino15\packages\realtek\hardware\ameba\2.0.5\cores\arduino/wifi_drv.h \
+ C:\Users\bruce\AppData\Local\Arduino15\packages\realtek\hardware\ameba\2.0.5\cores\arduino/IPAddress.h \
+ C:\Users\bruce\AppData\Local\Arduino15\packages\realtek\hardware\ameba\2.0.5\cores\arduino/Printable.h \
+ C:\Users\bruce\AppData\Local\Arduino15\packages\realtek\hardware\ameba\2.0.5\cores\arduino/wl_definitions.h \
+ C:\Users\bruce\AppData\Local\Arduino15\packages\realtek\hardware\ameba\2.0.5\system/libameba/sdk/component/common/drivers/wlan/realtek/include/wifi_structures.h \
+ C:\Users\bruce\AppData\Local\Arduino15\packages\realtek\hardware\ameba\2.0.5\system/libameba/sdk/component/common/drivers/wlan/realtek/include/wifi_constants.h \
+ C:\Users\bruce\AppData\Local\Arduino15\packages\realtek\hardware\ameba\2.0.5\system/libameba/sdk/component/common/api/platform/dlist.h \
+ C:\Users\bruce\AppData\Local\Arduino15\packages\realtek\hardware\ameba\2.0.5\libraries\WiFi\src\WiFi.h \
+ C:\Users\bruce\AppData\Local\Arduino15\packages\realtek\hardware\ameba\2.0.5\cores\arduino/wl_definitions.h \
+ C:\Users\bruce\AppData\Local\Arduino15\packages\realtek\hardware\ameba\2.0.5\cores\arduino/wl_types.h \
+ C:\Users\bruce\AppData\Local\Arduino15\packages\realtek\hardware\ameba\2.0.5\cores\arduino/IPAddress.h \
+ C:\Users\bruce\AppData\Local\Arduino15\packages\realtek\hardware\ameba\2.0.5\libraries\WiFi\src\WiFiClient.h \
+ C:\Users\bruce\AppData\Local\Arduino15\packages\realtek\hardware\ameba\2.0.5\cores\arduino/Print.h \
+ C:\Users\bruce\AppData\Local\Arduino15\packages\realtek\hardware\ameba\2.0.5\cores\arduino/WString.h \
+ C:\Users\bruce\AppData\Local\Arduino15\packages\realtek\hardware\ameba\2.0.5\cores\arduino/avr/pgmspace.h \
+ C:\Users\bruce\AppData\Local\Arduino15\packages\realtek\hardware\ameba\2.0.5\cores\arduino/Printable.h \
+ C:\Users\bruce\AppData\Local\Arduino15\packages\realtek\hardware\ameba\2.0.5\cores\arduino/Client.h \
+ C:\Users\bruce\AppData\Local\Arduino15\packages\realtek\hardware\ameba\2.0.5\cores\arduino/Print.h \
+ C:\Users\bruce\AppData\Local\Arduino15\packages\realtek\hardware\ameba\2.0.5\cores\arduino/Stream.h \
+ C:\Users\bruce\AppData\Local\Arduino15\packages\realtek\hardware\ameba\2.0.5\libraries\WiFi\src\WiFiServer.h \
+ C:\Users\bruce\AppData\Local\Arduino15\packages\realtek\hardware\ameba\2.0.5\cores\arduino/Server.h \
+ C:\Users\bruce\AppData\Local\Arduino15\packages\realtek\hardware\ameba\2.0.5\libraries\WiFi\src\WiFiSSLClient.h \
+ C:\Users\bruce\AppData\Local\Arduino15\packages\realtek\hardware\ameba\2.0.5\cores\arduino/ssl_drv.h \
+ C:\Users\bruce\AppData\Local\Arduino15\packages\realtek\hardware\ameba\2.0.5\cores\arduino/ard_ssl.h \
+ C:\Users\bruce\AppData\Local\Arduino15\packages\realtek\hardware\ameba\2.0.5\libraries\WiFi\src\WiFiUdp.h \
+ C:\Users\bruce\AppData\Local\Arduino15\packages\realtek\hardware\ameba\2.0.5\cores\arduino/Udp.h \
+ C:\Users\bruce\AppData\Local\Arduino15\packages\realtek\hardware\ameba\2.0.5\cores\arduino/Stream.h

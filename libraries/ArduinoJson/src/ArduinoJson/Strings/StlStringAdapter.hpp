@@ -23,11 +23,6 @@ class StlStringAdapter {
     return false;
   }
 
-  int8_t compare(const char* other) const {
-    if (!other) return 1;
-    return static_cast<int8_t>(_str->compare(other));
-  }
-
   bool equals(const char* expected) const {
     if (!expected) return false;
     return *_str == expected;

@@ -1,0 +1,6 @@
+{
+    "sketch": "BMP180_I2C.ino",
+    "port": "COM8",
+    "board": "realtek:ameba:ameba_rtl8195a",
+    "output": "build"
+}

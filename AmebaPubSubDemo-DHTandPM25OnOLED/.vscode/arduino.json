@@ -1,0 +1,6 @@
+{
+    "board": "realtek:ameba:ameba_rtl8195a",
+    "sketch": "AmebaPubSubDemo-DHTandPM25OnOLED.ino",
+    "port": "COM8",
+    "output": "build"
+}

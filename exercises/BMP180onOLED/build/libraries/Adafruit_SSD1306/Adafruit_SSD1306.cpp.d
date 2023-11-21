@@ -1,0 +1,32 @@
+d:\project\ameba-arduino-samples\exercises\BMP180onOLED\build\libraries\Adafruit_SSD1306\Adafruit_SSD1306.cpp.o: \
+ D:\project\ameba-arduino-samples\libraries\Adafruit_SSD1306\Adafruit_SSD1306.cpp \
+ C:\Users\bruce\AppData\Local\Arduino15\packages\realtek\hardware\ameba\2.0.5\libraries\Wire/Wire.h \
+ C:\Users\bruce\AppData\Local\Arduino15\packages\realtek\hardware\ameba\2.0.5\cores\arduino/Stream.h \
+ C:\Users\bruce\AppData\Local\Arduino15\packages\realtek\hardware\ameba\2.0.5\cores\arduino/Print.h \
+ C:\Users\bruce\AppData\Local\Arduino15\packages\realtek\hardware\ameba\2.0.5\cores\arduino/WString.h \
+ C:\Users\bruce\AppData\Local\Arduino15\packages\realtek\hardware\ameba\2.0.5\cores\arduino/avr/pgmspace.h \
+ C:\Users\bruce\AppData\Local\Arduino15\packages\realtek\hardware\ameba\2.0.5\cores\arduino/Printable.h \
+ C:\Users\bruce\AppData\Local\Arduino15\packages\realtek\hardware\ameba\2.0.5\libraries\SPI/SPI.h \
+ C:\Users\bruce\AppData\Local\Arduino15\packages\realtek\hardware\ameba\2.0.5\variants\rtl8195a/variant.h \
+ C:\Users\bruce\AppData\Local\Arduino15\packages\realtek\hardware\ameba\2.0.5\cores\arduino/Arduino.h \
+ C:\Users\bruce\AppData\Local\Arduino15\packages\realtek\hardware\ameba\2.0.5\cores\arduino/binary.h \
+ C:\Users\bruce\AppData\Local\Arduino15\packages\realtek\hardware\ameba\2.0.5\cores\arduino/wiring_constants.h \
+ C:\Users\bruce\AppData\Local\Arduino15\packages\realtek\hardware\ameba\2.0.5\cores\arduino/WCharacter.h \
+ C:\Users\bruce\AppData\Local\Arduino15\packages\realtek\hardware\ameba\2.0.5\cores\arduino/WMath.h \
+ C:\Users\bruce\AppData\Local\Arduino15\packages\realtek\hardware\ameba\2.0.5\cores\arduino/HardwareSerial.h \
+ C:\Users\bruce\AppData\Local\Arduino15\packages\realtek\hardware\ameba\2.0.5\cores\arduino/Stream.h \
+ C:\Users\bruce\AppData\Local\Arduino15\packages\realtek\hardware\ameba\2.0.5\cores\arduino/wiring_pulse.h \
+ C:\Users\bruce\AppData\Local\Arduino15\packages\realtek\hardware\ameba\2.0.5\cores\arduino/wiring.h \
+ C:\Users\bruce\AppData\Local\Arduino15\packages\realtek\hardware\ameba\2.0.5\cores\arduino/wiring_digital.h \
+ C:\Users\bruce\AppData\Local\Arduino15\packages\realtek\hardware\ameba\2.0.5\cores\arduino/wiring_analog.h \
+ C:\Users\bruce\AppData\Local\Arduino15\packages\realtek\hardware\ameba\2.0.5\cores\arduino/WInterrupts.h \
+ C:\Users\bruce\AppData\Local\Arduino15\packages\realtek\hardware\ameba\2.0.5\cores\arduino/Arduino.h \
+ C:\Users\bruce\AppData\Local\Arduino15\packages\realtek\hardware\ameba\2.0.5\cores\arduino/wiring_os.h \
+ C:\Users\bruce\AppData\Local\Arduino15\packages\realtek\hardware\ameba\2.0.5\cores\arduino/wiring_watchdog.h \
+ C:\Users\bruce\AppData\Local\Arduino15\packages\realtek\hardware\ameba\2.0.5\cores\arduino/wiring_shift.h \
+ C:\Users\bruce\AppData\Local\Arduino15\packages\realtek\hardware\ameba\2.0.5\cores\arduino/LOGUARTClass.h \
+ C:\Users\bruce\AppData\Local\Arduino15\packages\realtek\hardware\ameba\2.0.5\cores\arduino/RingBuffer.h \
+ D:\project\ameba-arduino-samples\libraries\Adafruit_GFX_Library/Adafruit_GFX.h \
+ C:\Users\bruce\AppData\Local\Arduino15\packages\realtek\hardware\ameba\2.0.5\cores\arduino/Print.h \
+ D:\project\ameba-arduino-samples\libraries\Adafruit_GFX_Library/gfxfont.h \
+ D:\project\ameba-arduino-samples\libraries\Adafruit_SSD1306\Adafruit_SSD1306.h
