@@ -1,5 +1,5 @@
 d:\project\ameba-arduino-samples\AmebaPubSubDemo-DHTandPM25OnOLED\build\libraries\Adafruit_SSD1306\Adafruit_SSD1306.cpp.o: \
- D:\project\ameba-arduino-samples\libraries\Adafruit_SSD1306\Adafruit_SSD1306.cpp \
+ C:\Users\bruce\Desktop\ameba-arduino-samples-part1\libraries\Adafruit_SSD1306\Adafruit_SSD1306.cpp \
  C:\Users\bruce\AppData\Local\Arduino15\packages\realtek\hardware\ameba\2.0.6\libraries\Wire/Wire.h \
  C:\Users\bruce\AppData\Local\Arduino15\packages\realtek\hardware\ameba\2.0.6\cores\arduino/Stream.h \
  C:\Users\bruce\AppData\Local\Arduino15\packages\realtek\hardware\ameba\2.0.6\cores\arduino/Print.h \
@@ -26,7 +26,7 @@ d:\project\ameba-arduino-samples\AmebaPubSubDemo-DHTandPM25OnOLED\build\librarie
  C:\Users\bruce\AppData\Local\Arduino15\packages\realtek\hardware\ameba\2.0.6\cores\arduino/wiring_shift.h \
  C:\Users\bruce\AppData\Local\Arduino15\packages\realtek\hardware\ameba\2.0.6\cores\arduino/LOGUARTClass.h \
  C:\Users\bruce\AppData\Local\Arduino15\packages\realtek\hardware\ameba\2.0.6\cores\arduino/RingBuffer.h \
- D:\project\ameba-arduino-samples\libraries\Adafruit_GFX_Library/Adafruit_GFX.h \
+ C:\Users\bruce\Desktop\ameba-arduino-samples-part1\libraries\Adafruit_GFX_Library/Adafruit_GFX.h \
  C:\Users\bruce\AppData\Local\Arduino15\packages\realtek\hardware\ameba\2.0.6\cores\arduino/Print.h \
- D:\project\ameba-arduino-samples\libraries\Adafruit_GFX_Library/gfxfont.h \
- D:\project\ameba-arduino-samples\libraries\Adafruit_SSD1306\Adafruit_SSD1306.h
+ C:\Users\bruce\Desktop\ameba-arduino-samples-part1\libraries\Adafruit_GFX_Library/gfxfont.h \
+ C:\Users\bruce\Desktop\ameba-arduino-samples-part1\libraries\Adafruit_SSD1306\Adafruit_SSD1306.h

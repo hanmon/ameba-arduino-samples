@@ -1,6 +1,6 @@
 d:\project\ameba-arduino-samples\AmebaPubSubDemo-DHTandPM25OnOLED\build\libraries\Adafruit_GFX_Library\Adafruit_GFX.cpp.o: \
- D:\project\ameba-arduino-samples\libraries\Adafruit_GFX_Library\Adafruit_GFX.cpp \
- D:\project\ameba-arduino-samples\libraries\Adafruit_GFX_Library\Adafruit_GFX.h \
+ C:\Users\bruce\Desktop\ameba-arduino-samples-part1\libraries\Adafruit_GFX_Library\Adafruit_GFX.cpp \
+ C:\Users\bruce\Desktop\ameba-arduino-samples-part1\libraries\Adafruit_GFX_Library\Adafruit_GFX.h \
  C:\Users\bruce\AppData\Local\Arduino15\packages\realtek\hardware\ameba\2.0.6\cores\arduino/Arduino.h \
  C:\Users\bruce\AppData\Local\Arduino15\packages\realtek\hardware\ameba\2.0.6\cores\arduino/binary.h \
  C:\Users\bruce\AppData\Local\Arduino15\packages\realtek\hardware\ameba\2.0.6\cores\arduino/wiring_constants.h \
@@ -25,5 +25,5 @@ d:\project\ameba-arduino-samples\AmebaPubSubDemo-DHTandPM25OnOLED\build\librarie
  C:\Users\bruce\AppData\Local\Arduino15\packages\realtek\hardware\ameba\2.0.6\cores\arduino/wiring_watchdog.h \
  C:\Users\bruce\AppData\Local\Arduino15\packages\realtek\hardware\ameba\2.0.6\cores\arduino/wiring_shift.h \
  C:\Users\bruce\AppData\Local\Arduino15\packages\realtek\hardware\ameba\2.0.6\cores\arduino/Print.h \
- D:\project\ameba-arduino-samples\libraries\Adafruit_GFX_Library\gfxfont.h \
- D:\project\ameba-arduino-samples\libraries\Adafruit_GFX_Library\glcdfont.c
+ C:\Users\bruce\Desktop\ameba-arduino-samples-part1\libraries\Adafruit_GFX_Library\gfxfont.h \
+ C:\Users\bruce\Desktop\ameba-arduino-samples-part1\libraries\Adafruit_GFX_Library\glcdfont.c

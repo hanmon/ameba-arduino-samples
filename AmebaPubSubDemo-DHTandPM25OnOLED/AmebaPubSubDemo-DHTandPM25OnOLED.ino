@@ -28,17 +28,17 @@ SetRgbLed rgb(COMMON_ANODE, 9, 10, 11);
 #define I2C_ADDRESS 0x77
 BMP180I2C bmp180(I2C_ADDRESS);
 
-char ssid[] = "AIoT_1";    // your network SSID (name)
-char pass[] = ""; // your network password
+char ssid[] = "Bruce";    // your network SSID (name)
+char pass[] = "ims.1qaz"; // your network password
 int status = WL_IDLE_STATUS; // the Wifi radio's status
 
 char mqttServer[] = "iot.cht.com.tw";
 char deviceId[] = "31080836893";
 char clientId[] = "amebaClient";
-const char DEVICE_KEY[] = ""; // your api key
+const char DEVICE_KEY[] = "DKMS3R2SGRE42USE5Z"; // your api key
 char publishRawTopic[] = "/v1/device/31080836893/rawdata";
 char publishRawPayload[400];
-char displayRow0[30], displayRow1[30], displayRow2[30];
+char displayRow0[30], displayRow1[30], displayRow2[30],displayRow3[30],displayRow4[30];
 char logStr[200]; // for printing log string
 char subscribeTopic[] = "/v1/device/31080836893/sensor/rgb/rawdata";
 unsigned long previousRawTime = 0; // storing previous publishing time
@@ -81,12 +81,13 @@ void rawTask()
   if ((millis() - previousRawTime) > rawTimer)
   {
     previousRawTime = millis();
-    // Measuring from real sensors
+    // generating random sensor values
     float humid = random(60, 70);
     float temp = random(20, 25);
     int pm10 = random(0, 1000);
     int pm25 = random(0, 1000);
     int pm100 = random(0, 1000);
+    // Measuring from real sensors
     // humid=getHumidityValue();
     // temp=getTemperatureValue();
     // int* pmValues=getPMValues();
@@ -155,12 +156,23 @@ void rawTask()
     // clearLCD();
     //    char* lcdStrRow0=(char*)malloc(20);
     //    char* lcdStrRow1=(char*)malloc(20);
-    // clearOLED();
-    // sprintf(displayRow0, "Temp:%2.2f%cC", temp, 0xF7);
-    // printOnOLED(displayRow0);
+     //clearOLED();
+     serCursorToBegin();
+     setTextColor();
+     sprintf(displayRow0, "Temp:%2.2f%cC", temp, 0xF7);
+     printOnOLED(displayRow0);
     // memset(displayRow0, 0, 30);
-    // sprintf(displayRow0, "Humid:%2.2f%%", humid);
-    // printOnOLED(displayRow0);
+     sprintf(displayRow1, "Humid:%2.2f%%", humid);
+     printOnOLED(displayRow1);
+
+     sprintf(displayRow2, "PM1:%d", pm10);
+     printOnOLED(displayRow2);
+
+     sprintf(displayRow3, "PM2.5:%d", pm25);
+     printOnOLED(displayRow3);
+
+     sprintf(displayRow4, "PM10:%d", pm100);
+     printOnOLED(displayRow4);
     // memset(displayRow0, 0, 30);
     // printOnOLED(displayRow0);
     // printOnOLED(displayRow1);

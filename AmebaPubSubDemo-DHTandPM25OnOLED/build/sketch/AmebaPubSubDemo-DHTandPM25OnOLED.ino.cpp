@@ -31,13 +31,13 @@ SetRgbLed rgb(COMMON_ANODE, 9, 10, 11);
 BMP180I2C bmp180(I2C_ADDRESS);
 
 char ssid[] = "AIoT_1";    // your network SSID (name)
-char pass[] = "chtti@chtti"; // your network password
+char pass[] = ""; // your network password
 int status = WL_IDLE_STATUS; // the Wifi radio's status
 
 char mqttServer[] = "iot.cht.com.tw";
 char deviceId[] = "31080836893";
 char clientId[] = "amebaClient";
-const char DEVICE_KEY[] = "DKMS3R2SGRE42USE5Z"; // your api key
+const char DEVICE_KEY[] = ""; // your api key
 char publishRawTopic[] = "/v1/device/31080836893/rawdata";
 char publishRawPayload[400];
 char displayRow0[30], displayRow1[30], displayRow2[30];

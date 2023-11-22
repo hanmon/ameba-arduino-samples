@@ -1,6 +1,6 @@
 d:\project\ameba-arduino-samples\AmebaPubSubDemo-DHTandPM25OnOLED\build\libraries\SetRgbLed\SetRgbLed.cpp.o: \
- D:\project\ameba-arduino-samples\libraries\SetRgbLed\SetRgbLed.cpp \
- D:\project\ameba-arduino-samples\libraries\SetRgbLed\SetRgbLed.h \
+ C:\Users\bruce\Desktop\ameba-arduino-samples-part1\libraries\SetRgbLed\SetRgbLed.cpp \
+ C:\Users\bruce\Desktop\ameba-arduino-samples-part1\libraries\SetRgbLed\SetRgbLed.h \
  C:\Users\bruce\AppData\Local\Arduino15\packages\realtek\hardware\ameba\2.0.6\cores\arduino/Arduino.h \
  C:\Users\bruce\AppData\Local\Arduino15\packages\realtek\hardware\ameba\2.0.6\cores\arduino/binary.h \
  C:\Users\bruce\AppData\Local\Arduino15\packages\realtek\hardware\ameba\2.0.6\cores\arduino/wiring_constants.h \

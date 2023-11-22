@@ -6,7 +6,7 @@
   "customBuildProperties": "build.path=d:\\project\\ameba-arduino-samples\\AmebaPubSubDemo-DHTandPM25OnOLED\\build,build.warn_data_percentage=75,runtime.tools.arm-none-eabi-gcc.path=C:\\Users\\bruce\\AppData\\Local\\Arduino15\\packages\\realtek\\tools\\arm-none-eabi-gcc\\4.8.3-2014q1,runtime.tools.arm-none-eabi-gcc-4.8.3-2014q1.path=C:\\Users\\bruce\\AppData\\Local\\Arduino15\\packages\\realtek\\tools\\arm-none-eabi-gcc\\4.8.3-2014q1,runtime.tools.ameba_tools.path=C:\\Users\\bruce\\AppData\\Local\\Arduino15\\packages\\realtek\\tools\\ameba_tools\\1.1.1,runtime.tools.ameba_tools-1.1.1.path=C:\\Users\\bruce\\AppData\\Local\\Arduino15\\packages\\realtek\\tools\\ameba_tools\\1.1.1",
   "fqbn": "realtek:ameba:ameba_rtl8195a",
   "hardwareFolders": "D:\\Program Files (x86)\\Arduino\\hardware,C:\\Users\\bruce\\AppData\\Local\\Arduino15\\packages",
-  "otherLibrariesFolders": "D:\\project\\ameba-arduino-samples\\libraries",
+  "otherLibrariesFolders": "C:\\Users\\bruce\\Desktop\\ameba-arduino-samples-part1\\libraries",
   "runtime.ide.version": "10818",
   "sketchLocation": "d:\\project\\ameba-arduino-samples\\AmebaPubSubDemo-DHTandPM25OnOLED\\AmebaPubSubDemo-DHTandPM25OnOLED.ino"
 }

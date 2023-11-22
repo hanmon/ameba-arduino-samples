@@ -1,6 +1,6 @@
 d:\project\ameba-arduino-samples\AmebaPubSubDemo-DHTandPM25OnOLED\build\libraries\PubSubClient\PubSubClient.cpp.o: \
- D:\project\ameba-arduino-samples\libraries\PubSubClient\src\PubSubClient.cpp \
- D:\project\ameba-arduino-samples\libraries\PubSubClient\src\PubSubClient.h \
+ C:\Users\bruce\Desktop\ameba-arduino-samples-part1\libraries\PubSubClient\src\PubSubClient.cpp \
+ C:\Users\bruce\Desktop\ameba-arduino-samples-part1\libraries\PubSubClient\src\PubSubClient.h \
  C:\Users\bruce\AppData\Local\Arduino15\packages\realtek\hardware\ameba\2.0.6\cores\arduino/Arduino.h \
  C:\Users\bruce\AppData\Local\Arduino15\packages\realtek\hardware\ameba\2.0.6\cores\arduino/binary.h \
  C:\Users\bruce\AppData\Local\Arduino15\packages\realtek\hardware\ameba\2.0.6\cores\arduino/wiring_constants.h \
